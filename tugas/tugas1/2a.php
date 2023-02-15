@@ -1,9 +1,5 @@
 <?php 
 $a = 38;
-$b = 5;
-$c = 2;
-$d = 75;
-$e = 20;
 ?>
 
 <!DOCTYPE html>
@@ -16,9 +12,9 @@ $e = 20;
 </head>
 <body>
     <p> Aku adalah angka <b><?php echo $a?></b></p>
-    <p> Jika aku dikali <?php echo $b ?>, maka aku sekarang menjadi <b><?php echo $a*$b ?></b></p>
-    <p> Jika aku dibagi <?php echo $c ?>, maka aku sekarang menjadi <b><?php echo $a/$c ?></b></p>
-    <p> Jika aku ditambah <?php echo $d ?>, maka aku sekarang menjadi <b><?php echo $a+$d ?></b></p>
-    <p> Jika aku dikurang <?php echo $e ?>, maka aku sekarang menjadi <b><?php echo $a-$e ?></b></p>
+    <p> Jika aku dikali 5, maka aku sekarang menjadi <b><?php echo $a*5 ?></b></p>
+    <p> Jika aku dibagi 2, maka aku sekarang menjadi <b><?php echo $a/2 ?></b></p>
+    <p> Jika aku ditambah 75, maka aku sekarang menjadi <b><?php echo $a+75 ?></b></p>
+    <p> Jika aku dikurang 20, maka aku sekarang menjadi <b><?php echo $a-20 ?></b></p>
 </body>
 </html>
