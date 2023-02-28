@@ -1,9 +1,9 @@
 <?php
 echo "<table>";
-for ($i = 1; $i <= 10; $i++) {
+for ($x = 1; $x <= 10; $x++) {
     echo "<tr>";
-    for ($j = 1; $j <= $i; $j++) {
-        echo "<td>" . $j . "</td>";
+    for ($y = 1; $y <= $x; $y++) {
+        echo "<td>" . $y . "</td>";
     }
     echo "</tr>";
 }
