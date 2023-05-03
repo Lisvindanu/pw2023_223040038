@@ -1,3 +1,35 @@
+<?php
+session_start();
+
+if (!isset($_SESSION["submit"])) {
+    header("Location: login.php");
+}
+$conn = mysqli_connect("localhost", "root", "", "tugas_besar");
+require 'functions.php';
+
+//cek apakah tombol submit sudah ditekan atau belum
+if (isset($_POST["submit"])) {
+
+
+
+
+
+    // cek apakah data berhasil di tambahkan atau tidak
+    if (tambah($_POST) > 0) {
+        echo "
+           <script> 
+            alert('data berhasil ditambahkan!');
+            document.location.href = 'admin.php';
+           </script>
+        ";
+    } else
+        echo "<script>
+    alert('data gagal ditambahkan!);
+    document.location.href = 'admin.php';
+    </script>";
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,7 +39,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add product</title>
     <!-- MyCSS -->
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../assets/css/tambahdata.css">
     <!-- Metro 4 -->
     <link rel="stylesheet" href="https://cdn.metroui.org.ua/v4.3.2/css/metro-all.min.css">
 
@@ -39,10 +71,11 @@
                                 <input type="text" data-role="input" name="brand" id="brand" require>
                             </div>
                             <div class="field">
-                                <!-- Form Warna -->
-                                <label for="warna">Color</label>
-                                <input type="text" data-role="input" name="warna" id="warna" require>
+                                <!-- Form Brand -->
+                                <label for="detail">Detail</label>
+                                <input type="text" data-role="input" name="detail" id="detail" require>
                             </div>
+
                             <div class="field">
                                 <!-- Form Harga -->
                                 <label for="harga">Price</label>
@@ -54,7 +87,7 @@
                                 <input type="file" name="gambar" class="gambar" onchange="previewImage()">
                                 <img src="../assets/img/nophoto.png" style="display:block; align-items: center;" class="img-preview w-50">
                             </div>
-                            <button type="submit" name="tambah" class="button success outline w-100">
+                            <button type="submit" name="submit" class="button success outline w-100">
                                 Add Product
                             </button>
                         </form>

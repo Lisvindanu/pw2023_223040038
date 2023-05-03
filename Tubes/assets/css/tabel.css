@@ -1,0 +1,45 @@
+/* Styling for mobile devices */
+@media only screen and (max-width: 767px) {
+  .admin .container {
+    padding-top: 30px !important;
+  }
+
+  .admin .table-responsive {
+    overflow-x: scroll;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .admin table {
+    min-width: 600px;
+  }
+
+  .admin .table-responsive {
+    max-height: 60vh; /* Menentukan tinggi maksimum untuk tabel */
+    overflow-y: auto; /* Membuat tabel bisa di-scroll jika melebihi tinggi maksimum */
+  }
+
+  form.cari input {
+    width: 90px !important;
+  }
+}
+
+/* Styling for tablets */
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  .admin .container {
+    padding-top: 40px !important;
+  }
+}
+
+/* Styling for small desktops */
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+  .admin .container {
+    padding-top: 50px !important;
+  }
+}
+
+/* Styling for larger desktops */
+@media only screen and (min-width: 1200px) {
+  .admin .container {
+    padding-top: 60px !important;
+  }
+}

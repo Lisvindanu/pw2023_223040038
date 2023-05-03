@@ -28,19 +28,19 @@ if (isset($_POST["register"])) {
     <section class="container">
         <div class="row content d-flex justify-content-center tengah">
             <div class="col-md-5">
-                <div class="box shadow bg-white p-4  borius">
+                <div class="turun box shadow bg-white p-4  borius">
                     <h3 class="mb-4 text-center fs-1">Registrasi</h3>
                     <form class="mb-3" action="" method="post">
                         <div class="form-floating mb-3">
-                            <Input class="form-control rounded-0" type="text" name="username" id="username" placeholder="username" autocomplete="off" required autofocus>
+                            <Input class="form-control rounded-0 px-5" type="text" name="username" id="username" placeholder="username" autocomplete="off" required autofocus>
                             <label for="username">Username</label>
                         </div>
                         <div class="form-floating mb-3">
-                            <Input class="form-control rounded-0" type="password" name="password" id="password" placeholder="password" required>
+                            <Input class="form-control rounded-0 px-5" type="password" name="password" id="password" placeholder="password" required>
                             <label for="password">Password</label>
                         </div>
                         <div class="form-floating mb-3">
-                            <Input class="form-control rounded-0" type="password" name="password2" id="password2" placeholder="Konfirmasi password" required>
+                            <Input class="form-control rounded-0 px-5" type="password" name="password2" id="password2" placeholder="Konfirmasi password" required>
                             <label for="password2">Konfirmasi Password</label>
                         </div>
                         <div class="d-grid gap-2 mb3">

@@ -158,5 +158,55 @@
   justify-content: center !important;
   align-items: center !important;
   flex-direction: column !important;
-  margin-top: 200px !important;
+  margin-top: 150px !important;
+}
+
+@media screen and (max-width: 670px) {
+  .turun {
+    margin-top: 200px !important;
+  }
+}
+
+/* Detail Product */
+.detail-product .container {
+  padding: 70px 0;
+}
+.detail-product .nama-sepatu {
+  text-align: left;
+  font-family: "Lato-regular";
+  font-weight: 600;
+  margin-bottom: 0;
+}
+.detail-product h4 {
+  text-align: left;
+  font-family: "Lato-regular";
+  font-weight: 400;
+  color: #646771;
+  margin: 0;
+  margin-bottom: 20px;
+}
+.detail-product h4 span {
+  display: inline;
+  background-image: linear-gradient(#f1d302ff, #f1d302ff);
+  background-size: 100% 0px;
+  background-position: 0% 100%;
+  background-repeat: no-repeat;
+  transition: background 0.7s ease-out;
+}
+
+.detail-product:hover h4 span {
+  background-size: 100% 35%;
+}
+.detail-product h6 {
+  color: #646771;
+}
+.detail-product .auth h5,
+.detail-product .auth h6,
+.detail-product .auth p {
+  margin: 1px !important;
+  color: #646771;
+}
+.detail-product .auth h5 {
+  color: #141414;
+  margin-bottom: 10px !important;
 }

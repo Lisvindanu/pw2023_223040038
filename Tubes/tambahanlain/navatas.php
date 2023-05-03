@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top atas">
-    <div class="container">
+    <div class="container-fluid">
         <a class="navbar-brand py-1" href="#">
             <img src="" alt="logo" />
         </a>
@@ -11,9 +11,8 @@
                 <a class="nav-link active px-3" aria-current="page" href="#">Home</a>
                 <a class="nav-link px-3" href="#inikataloggame">game</a>
                 <a class="nav-link px-3" href="#Beli">Pricing</a>
-                <button type="button" class="btn btn-outline-danger loginhp">
-                    Login
-                </button>
+
+                <a class="btn btn-outline-danger px-3 logingp" role="button" href="../tubes/php/login.php">Login</a>
             </div>
         </div>
     </div>

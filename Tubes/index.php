@@ -1,3 +1,10 @@
+<?php
+// Menghubungkan dengan file php lainya
+require 'php/functions.php';
+//melakukan query
+$items = query("SELECT * FROM items");
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -91,6 +98,9 @@
               <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" class="thumbnail" aria-label="Slide 3">
                 <img src="./assets/img/hero1.jpeg" class="d-block w-100" alt="..." />
               </button>
+              <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" class="thumbnail" aria-label="Slide 3">
+                <img src="./assets/img/hero1.jpeg" class="d-block w-100" alt="..." />
+              </button>
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
               <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -107,213 +117,30 @@
   </section>
   <!-- jumbotron show item end -->
   <!-- card promo item  start-->
-  <section id="cardkatalog">
+  <section id="cardkatalog" style="background-color:gainsboro ; padding-top:20px">
     <div class="container">
       <div class="row">
-        <div class="col-lg-4 col-md-6 col-sm-12 mb-4 gambarnaik">
-          <div class="card p-1" style="width: 20rem">
-            <img src="./assets/img/adidas.jpg" alt="" class="w-100" />
-            <div class="card-body">
-              <h4>
-                Baju Tidur <br />
-                <br />
-                Wanita
-              </h4>
-              <p>Produk Terbaru</p>
-              <div class="card-fasilitas">
-                <h4>Rp.30.000</h4>
-                <p>&nbsp; Diskon</p>
+        <?php foreach ($items as $brg) : ?>
+          <div class="col-lg-4 col-md-6 col-sm-12 mb-4 gambarnaik">
+            <a class="text-decoration-none" style="padding:0px !important; width:0px !important;" href="./php/detailitem.php?id=<?= $brg["id"] ?>">
+              <div class="card p-1" style="width: 20rem">
+
+                <img src="./assets/img/<?= $brg['gambar'] ?>" alt="" class="w-100" />
+                <div class="card-body">
+                  <h4>
+                    <?= $brg['nama'] ?> <br />
+                    <br />
+                    <span style="font-size: 13px; color:red;"><?= $brg['detail']; ?></span>
+                  </h4>
+                  <p>Produk Terbaru</p>
+                  <div class="card-fasilitas">
+                    <h4>Rp.<?= $brg['harga'] ?></h4>
+                    <p>&nbsp; Diskon</p>
+                  </div>
+                </div>
               </div>
-            </div>
           </div>
-        </div>
-        <div class="col-lg-4 col-md-6 col-sm-12 mb-4 gambarnaik">
-          <div class="card p-1" style="width: 20rem">
-            <img src="./assets/img/adidas.jpg" alt="" class="w-100" />
-            <div class="card-body">
-              <h4>
-                Baju Tidur <br />
-                <br />
-                Wanita
-              </h4>
-              <p>Produk Terbaru</p>
-              <div class="card-fasilitas">
-                <h4>Rp.30.000</h4>
-                <p>&nbsp; Diskon</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-md-6 col-sm-12 mb-4 gambarnaik">
-          <div class="card p-1" style="width: 20rem">
-            <img src="./assets/img/adidas.jpg" alt="" class="w-100" />
-            <div class="card-body">
-              <h4>
-                Baju Tidur <br />
-                <br />
-                Wanita
-              </h4>
-              <p>Produk Terbaru</p>
-              <div class="card-fasilitas">
-                <h4>Rp.30.000</h4>
-                <p>&nbsp; Diskon</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-md-6 col-sm-12 mb-4 gambarnaik">
-          <div class="card p-1" style="width: 20rem">
-            <img src="./assets/img/adidas.jpg" alt="" class="w-100" />
-            <div class="card-body">
-              <h4>
-                Baju Tidur <br />
-                <br />
-                Wanita
-              </h4>
-              <p>Produk Terbaru</p>
-              <div class="card-fasilitas">
-                <h4>Rp.30.000</h4>
-                <p>&nbsp; Diskon</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-md-6 col-sm-12 mb-4 gambarnaik">
-          <div class="card p-1" style="width: 20rem">
-            <img src="./assets/img/adidas.jpg" alt="" class="w-100" />
-            <div class="card-body">
-              <h4>
-                Baju Tidur <br />
-                <br />
-                Wanita
-              </h4>
-              <p>Produk Terbaru</p>
-              <div class="card-fasilitas">
-                <h4>Rp.30.000</h4>
-                <p>&nbsp; Diskon</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-md-6 col-sm-12 mb-4 gambarnaik">
-          <div class="card p-1" style="width: 20rem">
-            <img src="./assets/img/adidas.jpg" alt="" class="w-100" />
-            <div class="card-body">
-              <h4>
-                Baju Tidur <br />
-                <br />
-                Wanita
-              </h4>
-              <p>Produk Terbaru</p>
-              <div class="card-fasilitas">
-                <h4>Rp.30.000</h4>
-                <p>&nbsp; Diskon</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-md-6 col-sm-12 mb-4 gambarnaik">
-          <div class="card p-1" style="width: 20rem">
-            <img src="./assets/img/adidas.jpg" alt="" class="w-100" />
-            <div class="card-body">
-              <h4>
-                Baju Tidur <br />
-                <br />
-                Wanita
-              </h4>
-              <p>Produk Terbaru</p>
-              <div class="card-fasilitas">
-                <h4>Rp.30.000</h4>
-                <p>&nbsp; Diskon</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-md-6 col-sm-12 mb-4 gambarnaik">
-          <div class="card p-1" style="width: 20rem">
-            <img src="./assets/img/adidas.jpg" alt="" class="w-100" />
-            <div class="card-body">
-              <h4>
-                Baju Tidur <br />
-                <br />
-                Wanita
-              </h4>
-              <p>Produk Terbaru</p>
-              <div class="card-fasilitas">
-                <h4>Rp.30.000</h4>
-                <p>&nbsp; Diskon</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-md-6 col-sm-12 mb-4 gambarnaik">
-          <div class="card p-1" style="width: 20rem">
-            <img src="./assets/img/adidas.jpg" alt="" class="w-100" />
-            <div class="card-body">
-              <h4>
-                Baju Tidur <br />
-                <br />
-                Wanita
-              </h4>
-              <p>Produk Terbaru</p>
-              <div class="card-fasilitas">
-                <h4>Rp.30.000</h4>
-                <p>&nbsp; Diskon</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-md-6 col-sm-12 mb-4 gambarnaik">
-          <div class="card p-1" style="width: 20rem">
-            <img src="./assets/img/adidas.jpg" alt="" class="w-100" />
-            <div class="card-body">
-              <h4>
-                Baju Tidur <br />
-                <br />
-                Wanita
-              </h4>
-              <p>Produk Terbaru</p>
-              <div class="card-fasilitas">
-                <h4>Rp.30.000</h4>
-                <p>&nbsp; Diskon</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-md-6 col-sm-12 mb-4 gambarnaik">
-          <div class="card p-1" style="width: 20rem">
-            <img src="./assets/img/adidas.jpg" alt="" class="w-100" />
-            <div class="card-body">
-              <h4>
-                Baju Tidur <br />
-                <br />
-                Wanita
-              </h4>
-              <p>Produk Terbaru</p>
-              <div class="card-fasilitas">
-                <h4>Rp.30.000</h4>
-                <p>&nbsp; Diskon</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-md-6 col-sm-12 mb-4 gambarnaik">
-          <div class="card p-1" style="width: 20rem">
-            <img src="./assets/img/adidas.jpg" alt="" class="w-100" />
-            <div class="card-body">
-              <h4>
-                Baju Tidur <br />
-                <br />
-                Wanita
-              </h4>
-              <p>Produk Terbaru</p>
-              <div class="card-fasilitas">
-                <h4>Rp.30.000</h4>
-                <p>&nbsp; Diskon</p>
-              </div>
-            </div>
-          </div>
-        </div>
+        <?php endforeach; ?>
       </div>
     </div>
   </section>
