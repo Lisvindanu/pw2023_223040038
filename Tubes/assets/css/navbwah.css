@@ -27,6 +27,10 @@
 }
 
 @media screen and (max-width: 600px) {
+  .mobile {
+    padding-top: 0px !important;
+  }
+
   .navbarhp {
     position: fixed !important;
     bottom: 0 !important;

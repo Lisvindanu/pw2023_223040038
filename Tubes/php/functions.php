@@ -158,7 +158,7 @@ function ubah($data)
      nama = '$nama', 
      brand = '$brand',
      harga = '$harga', 
-     gambar = '$gambar'
+     gambar = '$gambar',
      detail = '$detail'
      WHERE id = $id
      

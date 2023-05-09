@@ -43,47 +43,68 @@ if (isset($_POST["submit"])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ubah data mahasiswa</title>
+    <!-- Metro 4 -->
+    <link rel="stylesheet" href="https://cdn.metroui.org.ua/v4.3.2/css/metro-all.min.css">
+    <!-- MyCSS -->
+    <link rel="stylesheet" href="../assets/css/tambahdata.css">
+
+
+    <title>ubah data </title>
 </head>
 
-<body>
-    <h1>Tambah Data Mahasiswa</h1>
+<body style="background-color:  #f1d302ff;;">
+    <section class="add-product">
+        <div class="container">
+            <div class="grid">
+                <div class="btn-cancel">
+                    <a href="admin.php" onclick="return confirm('Apakah anda yakin ingin kembali?')"><i class="fas fa-times"></i></a>
+                </div>
+                <div class="row">
+                    <div class="cell-10 offset-1">
+                        <div class="title">
+                            <p>Form Change Data</p>
+                        </div>
+                        <form action="" method="post" enctype="multipart/form-data">
+                            <input type="hidden" name="id" value="<?= $brg["id"] ?>">
+                            <div class="field">
+                                <label for="nama">Name : </label>
+                                <input type="text" name="nama" id="nama" required value="<?= $brg["nama"] ?>">
+                            </div>
+                            <div class="field">
+                                <label for="brand">brand : </label>
+                                <input type="text" name="brand" id="brand" required value="<?= $brg["brand"] ?>">
+                            </div>
+                            <div class="field">
+                                <label for="harga">Price : </label>
+                                <input type="text" name="harga" id="harga" required value="<?= $brg["harga"] ?>">
+                            </div>
+                            <div class="field">
+                                <label for="detail">Detail : </label>
+                                <input type="text" name="detail" id="detail" value="<?= $brg["detail"] ?>">
+                            </div>
+                            <div class="field">
+                                <label for="gambar">Picture : </label> <br>
+                                <input type="file" name="gambar" id="gambar" onchange="previewImage()">
 
-    <form action="" method="post" enctype="multipart/form-data">
-        <input type="hidden" name="id" value="<?= $brg["id"] ?>">
+                                <img src="../assets/img/<?= $brg["gambar"]; ?>" style=" display:block; align-items: center;" class="img-preview w-50">
+                            </div>
+                            <button type=" submit" name="submit" class="button success outline w-100">Change Data!</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-        <ul>
-            <li>
-                <label for="nama">nama : </label>
-                <input type="text" name="nama" id="nama" required value="<?= $brg["nama"] ?>">
-            </li>
-            <li>
-                <label for="brand">brand : </label>
-                <input type="text" name="brand" id="brand" required value="<?= $brg["brand"] ?>">
-            </li>
-            <li>
-                <label for="harga">harga : </label>
-                <input type="text" name="harga" id="harga" required value="<?= $brg["harga"] ?>">
-            </li>
-            <li>
-                <label for="detail">detail : </label>
-                <input type="text" name="detail" id="detail" required value="<?= $brg["detail"] ?>">
-            </li>
+    </section>
 
-            <li>
 
-                <label for="gambar">Gambar : </label> <br>
-                <img src="img/<?= $brg["gambar"]; ?>" width="85"> <br>
 
-                <input type="file" name="gambar" id="gambar">
-            </li>
-            <li>
-                <button type="submit" name="submit">Ubah Data!</button>
-            </li>
-        </ul>
 
-    </form>
 
 </body>
+<!-- FontAwesome -->
+<script src="https://kit.fontawesome.com/6dd84d01cb.js" crossorigin="anonymous"></script>
+<!-- Metro - 4 -->
+<script src="https://cdn.metroui.org.ua/v4.3.2/js/metro.min.js"></script>
 
 </html>

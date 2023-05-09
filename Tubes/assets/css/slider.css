@@ -110,3 +110,30 @@
   -webkit-tap-highlight-color: transparent;
   transition: background-color 0.1s ease-in-out;
 }
+
+.test .hoverdisini:hover {
+  color: #807e7e !important;
+}
+
+@media screen and (max-width: 600px) {
+  .mobile {
+    padding-top: 0px !important;
+  }
+  .tom {
+    padding-bottom: 0px !important ;
+  }
+}
+
+@media all and (min-width: 992px) {
+  .navbar .nav-item .dropdown-menu {
+    display: none;
+  }
+  .navbar .nav-item:hover .nav-link {
+  }
+  .navbar .nav-item:hover .dropdown-menu {
+    display: block;
+  }
+  .navbar .nav-item .dropdown-menu {
+    margin-top: 0;
+  }
+}

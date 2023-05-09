@@ -27,18 +27,21 @@ if (isset($_POST["cari"])) {
 
 
     <link rel="stylesheet" href="../assets/css/navbwah.css" />
-    <link rel="stylesheet" href="../assets/css/slider.css" />
+
+
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <link rel="stylesheet" href="../assets/css/slider.css" />
 </head>
 
 <body>
     <?php include('../tambahanlain/navadmin.php') ?>
-    <section class="admin">
+
+    <section class="admin mobile" style="margin-top:30px !important">
 
 
 
-        <div class="container py-2 " style="padding-top: 60px !important;">
+        <div class="container py-2 mobile tom " style="padding-top: 60px !important; ">
             <div class="row justify-content-between">
                 <div class="col-6 col-lg-2 px-4 py-5 ">
                     <div class="tambah py-2">

@@ -11,14 +11,16 @@ $items = query("SELECT * FROM items");
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" href="assets/icon/—Pngtree—samurai mask japanese general warrior_6570760.png">
   <title>wibu</title>
   <!-- css bootsrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous" />
 
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100" rel="stylesheet" />
   <!-- cssku -->
-  <link rel="stylesheet" href="./assets/css/slider.css" />
   <link rel="stylesheet" href="./assets/css/navbwah.css" />
+  <link rel="stylesheet" href="./assets/css/slider.css" />
+
   <!-- script font awesome kit-->
   <script src="https://kit.fontawesome.com/e18581a144.js" crossorigin="anonymous"></script>
 </head>
@@ -26,15 +28,19 @@ $items = query("SELECT * FROM items");
 <body>
   <!-- navbar -->
   <?php include('./tambahanlain/navatas.php') ?>
+  <style>
+    <?php include('./assets/css/slider.css') ?>
+  </style>
+
   <!-- navbar end -->
 
 
   <!-- jumbotron show item -->
-  <section class="show1">
+  <section class="show1 " style="margin-top: 30px !important;">
     <div class="container mt-3 py-2">
       <div class="row">
-        <div class="col-lg-6 px-4 py-5 d-flex">
-          <div class="px-4 py-5">
+        <div class="col-lg-6 px-4 py-5 d-flex mobile">
+          <div class="px-4 py-5 mobile tom">
             <img style="width: 95%" src="./assets/img/2.png" alt="" />
           </div>
         </div>
@@ -62,7 +68,8 @@ $items = query("SELECT * FROM items");
   </section>
   <!-- jumbotron end -->
   <section class="aboutPromo">
-    <div class="container">
+    <div class="container-fluid
+    ">
       <div class="row">
         <div class="col-lg-12 py-3 my-3">
           <h3 class="text-center">About</h3>
@@ -125,7 +132,7 @@ $items = query("SELECT * FROM items");
             <a class="text-decoration-none" style="padding:0px !important; width:0px !important;" href="./php/detailitem.php?id=<?= $brg["id"] ?>">
               <div class="card p-1" style="width: 20rem">
 
-                <img src="./assets/img/<?= $brg['gambar'] ?>" alt="" class="w-100" />
+                <img src="./assets/img/<?= $brg['gambar'] ?>" alt="" style="width: 100; height: 200px;" />
                 <div class="card-body">
                   <h4>
                     <?= $brg['nama'] ?> <br />

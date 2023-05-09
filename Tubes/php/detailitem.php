@@ -28,15 +28,19 @@ $brg = query("SELECT * FROM items WHERE id = $id")[0];
 </head>
 
 <body>
+    <?php include('../tambahanlain/navdetail.php') ?>
     <!-- Navbar -->
-    <?php include('../tambahanlain/navatas.php') ?>
+
+    <style>
+        <?php include('../assets/css/slider.css') ?>
+    </style>
     <!-- Navbar end -->
-    <section class="detail-product ">
+    <section class="detail-product " style="margin-top: 45px !important;">
         <div class="container ">
             <div class="detail mt-2">
                 <h1 class="nama-sepatu "><?= $brg['brand'] ?> <?= $brg['nama'] ?></h1>
 
-                <img src="../assets/img/<?= $brg["gambar"]; ?>" alt="">
+                <img src="../assets/img/<?= $brg["gambar"]; ?>" alt="" style="max-width: 600px; margin: auto;">
 
                 <hr>
                 <div class="row justify-content-center">
@@ -66,6 +70,8 @@ $brg = query("SELECT * FROM items WHERE id = $id")[0];
     <?php include('../tambahanlain/navbarhp.php') ?>
     <!-- fontawesome icon -->
     <script src="https://kit.fontawesome.com/6dd84d01cb.js" crossorigin="anonymous"></script>
+    <!-- My Script -->
+    <script src="js/script.js"></script>
     <!-- Metro - 4 -->
     <script src="https://cdn.metroui.org.ua/v4.3.2/js/metro.min.js"></script>
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
