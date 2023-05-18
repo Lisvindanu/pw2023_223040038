@@ -19,8 +19,12 @@
                         <li><a class="dropdown-item" href="#"> Submenu item 3 </a></li>
                     </ul>
                 </li>
+                <?php if (isset($_SESSION['submit']) && $_SESSION['submit'] === true) {
+                    echo '<a class="btn btn-outline-danger px-3 logingp" role="button" href="../tubes/php/admin.php">admin</a>';
+                } else {
+                    echo '<a class="btn btn-outline-danger px-3 logingp" role="button" href="../tubes/php/login.php">Login</a>';;
+                } ?>
 
-                <a class="btn btn-outline-danger px-3 logingp" role="button" href="../tubes/php/login.php">Login</a>
             </div>
         </div>
 

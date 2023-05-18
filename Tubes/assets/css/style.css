@@ -79,7 +79,7 @@
 .form-registrasi {
   background-color: #fdfffcff;
   margin: auto;
-  border-radius: 30px;
+  border-radius: 300px !important;
   /* padding:30px 50px !important; */
   position: absolute;
   margin-top: 120px;
@@ -116,6 +116,10 @@
   outline: none;
   transition: all 0.3s ease;
   font-size: 17px;
+}
+
+.form-floating:not(.form-control:disabled)::before {
+  background-color: transparent !important;
 }
 
 .form-registrasi form .field label {
@@ -159,6 +163,7 @@
   align-items: center !important;
   flex-direction: column !important;
   margin-top: 150px !important;
+  border-radius: 25px !important;
 }
 
 @media screen and (max-width: 670px) {
@@ -209,4 +214,10 @@
 .detail-product .auth h5 {
   color: #141414;
   margin-bottom: 10px !important;
+}
+
+div .btn-cancel.kanan21 {
+  margin-left: auto !important;
+  font-size: 28px !important;
+  margin-right: 10px !important;
 }

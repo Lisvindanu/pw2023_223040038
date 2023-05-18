@@ -11,6 +11,10 @@ $items = query("SELECT * FROM items ");
 if (isset($_POST["cari"])) {
     $items = cari($_POST["keyword"]);
 }
+$hours = date("H");
+
+
+
 ?>
 
 
@@ -28,6 +32,8 @@ if (isset($_POST["cari"])) {
     <link rel="stylesheet" href="../assets/css/slider.css" />
     <link rel="stylesheet" href="../assets/css/adminhp.css" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+
+
 
 </head>
 
@@ -58,6 +64,17 @@ if (isset($_POST["cari"])) {
         </div>
         <div class="table-responsive">
             <table class="table table-bordered">
+                <p><?php
+                    if (isset($_COOKIE["username"])) {
+                        echo "Halo, " .  "<span id='ucapan_salam'></span> " . $_COOKIE["username"] . ". Selamat bekerja";
+                    } else {
+                        echo "Selamat datang!";
+                    }
+                    ?></p>
+
+
+
+                <p>Admin diharapkan memiliki waktu tidur yang cukup</p>
                 <thead>
                     <tr>
                         <th scope="col">No</th>
@@ -103,6 +120,39 @@ if (isset($_POST["cari"])) {
     <!-- nav hp end -->
 
 </body>
+<script>
+    // javascript untuk ucapan selamat (pagi, siang, sore, malam)
+    function updateSalam() {
+        var now = new Date();
+        var hour = now.getHours();
+        var salam;
+
+        if (hour >= 4 && hour < 11) {
+            salam = "Selamat pagi";
+        } else if (hour >= 11 && hour < 14) {
+            salam = "Selamat siang";
+        } else if (hour >= 14 && hour < 18) {
+            salam = "Selamat sore";
+        } else {
+            salam = "Selamat malam";
+        }
+
+
+        document.getElementById('ucapan_salam').innerHTML = salam;
+        setTimeout(updateSalam, 3600000);
+    }
+
+    // Memanggil fungsi updateGreeting untuk pertama kali
+    updateSalam();
+</script>
+
+<!-- Kode di atas mendefinisikan sebuah fungsi bernama updateSalam() yang akan mengupdate ucapan salam pada halaman dengan waktu yang berjalan.
+Di dalam fungsi updateSalam(), pertama-tama kita membuat objek Date yang merepresentasikan waktu saat ini menggunakan var now = new Date();.
+Kemudian kita mengambil jam saat ini dari objek Date menggunakan var hour = now.getHours();.
+Selanjutnya, kita mendefinisikan variabel salam untuk menyimpan ucapan salam yang akan ditampilkan.
+Dengan menggunakan kondisi if-else, kita memeriksa nilai jam untuk menentukan ucapan salam yang sesuai. Misalnya, jika jam berada antara 0 dan 12, kita akan mengatur salam sebagai "Selamat pagi". Jika jam berada antara 12 dan 18, kita akan mengatur salam sebagai "Selamat siang". Begitu seterusnya.
+Setelah kita menentukan ucapan salam yang sesuai, kita menggunakan document.getElementById('ucapan_salam').innerHTML untuk mengubah isi elemen dengan ID "ucapan_salam" menjadi ucapan salam yang telah ditentukan.
+Terakhir, kita menggunakan setTimeout(updateSalam, 3600000) untuk mengatur timeout. Ini berarti fungsi updateSalam() akan dipanggil kembali setiap 3600000 milidetik (1 jam). -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
 
 </html>

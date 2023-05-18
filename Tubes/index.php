@@ -1,4 +1,5 @@
 <?php
+session_start();
 // Menghubungkan dengan file php lainya
 require 'php/functions.php';
 //melakukan query
@@ -91,6 +92,9 @@ $items = query("SELECT * FROM items");
               <div class="carousel-item">
                 <img src="./assets/img/hero1.jpeg" alt="" class="d-block w-100 mx-auto" />
               </div>
+              <div class="carousel-item">
+                <img src="./assets/img/hero1.jpeg" alt="" class="d-block w-100 mx-auto" />
+              </div>
             </div>
 
             <!-- carousel tampil button -->
@@ -105,7 +109,7 @@ $items = query("SELECT * FROM items");
               <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" class="thumbnail" aria-label="Slide 3">
                 <img src="./assets/img/hero1.jpeg" class="d-block w-100" alt="..." />
               </button>
-              <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" class="thumbnail" aria-label="Slide 3">
+              <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" class="thumbnail" aria-label="Slide 4">
                 <img src="./assets/img/hero1.jpeg" class="d-block w-100" alt="..." />
               </button>
             </div>

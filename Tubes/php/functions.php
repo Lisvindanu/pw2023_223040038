@@ -1,7 +1,7 @@
 <?php
 
 // koneksi ke database
-$conn = mysqli_connect("localhost", "root", "", "tugas_besar");
+$conn = mysqli_connect("localhost:3306", "root", "", "tubes");
 
 function query($query)
 {
@@ -179,3 +179,9 @@ function cari($keyword)
         ";
     return query($query);
 }
+
+date_default_timezone_set('Asia/Jakarta'); // Atur zona waktu sesuai kebutuhan Anda
+$waktu = date('2023-05-17 02:51:00'); // Ambil waktu saat ini
+
+// Mengatur cookie baru dengan nama "waktu_realtime" dan nilai waktu terbaru
+setcookie("waktu_realtime", $waktu, time() + 3600); // Berlaku selama 1 jam

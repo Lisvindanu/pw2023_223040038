@@ -4,7 +4,7 @@ session_start();
 if (!isset($_SESSION["submit"])) {
     header("Location: login.php");
 }
-$conn = mysqli_connect("localhost", "root", "", "tugas_besar");
+$conn = mysqli_connect("localhost:3306", "root", "", "tubes");
 require 'functions.php';
 
 //cek apakah tombol submit sudah ditekan atau belum

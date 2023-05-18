@@ -6,7 +6,9 @@ if (isset($_POST["register"])) {
     if (registrasi($_POST) > 0) {
         echo "<script>
         alert('user baru berhasil ditambahkan!');
-        </script>";
+        window.location = 'login.php';
+        </script>;";
+        exit();
     } else {
         echo mysqli_error($conn);
     }
@@ -24,11 +26,11 @@ if (isset($_POST["register"])) {
     <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 
-<body style="background-color:#A2588F">
+<body style="background-color:#7871AA">
     <section class="container">
         <div class="row content d-flex justify-content-center tengah">
             <div class="col-md-5">
-                <div class="turun box shadow bg-white p-4  borius">
+                <div class="turun box shadow bg-white p-4  borius box-form">
                     <h3 class="mb-4 text-center fs-1">Registrasi</h3>
                     <form class="mb-3" action="" method="post">
                         <div class="form-floating mb-3">

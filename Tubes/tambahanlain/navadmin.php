@@ -1,7 +1,7 @@
 <section class="navadmin">
     <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top atas" style="background-color: #4A22BF !important;">
         <div class="container-fluid">
-            <a class="navbar-brand py-1" href="#">
+            <a class="navbar-brand py-1" href="../index.php">
                 <img src="../assets/icon/Cute Minimalist Beige Ghost Game Center Logo (2).png" alt="logo" width="300px" height="100px" />
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">

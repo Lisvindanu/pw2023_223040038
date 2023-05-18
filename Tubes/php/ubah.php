@@ -6,7 +6,7 @@ if (!isset($_SESSION["submit"])) {
     header("Location: login.php");
 }
 // koneksi ke dbms
-$conn = mysqli_connect("localhost", "root", "", "tugas_besar");
+$conn = mysqli_connect("localhost:3306", "root", "", "tubes");
 require 'functions.php';
 
 // ambil data di url
