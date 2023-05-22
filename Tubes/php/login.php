@@ -87,7 +87,7 @@ if (isset($_POST["submit"])) {
             <div class="col-md-5">
 
                 <div class="turun box shadow bg-white p-4 borius ">
-                    <div class="btn-cancel kanan21 " style="margin-left: auto !important;
+                    <div class="btn-cancel kanan21" style="margin-left: auto !important;
   font-size: 28px !important;
   margin-right: 10px !important;">
                         <a href="../index.php" onclick="return confirm('Apakah anda yakin ingin kembali?')"><i class="fas fa-times"></i></a>

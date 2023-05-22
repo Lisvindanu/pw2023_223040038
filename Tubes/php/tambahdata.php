@@ -82,11 +82,20 @@ if (isset($_POST["submit"])) {
                                 <input type="number" data-role="input" name="harga" id="harga" class="mb-1" data-prepend="<span class='mif-dollar2'></span>" title="">
                             </div>
                             <div class="field">
+                                <!-- Form Kategori -->
+                                <label for="kategori">Category</label>
+                                <input type="text" data-role="input" name="kategori" id="kategori" required>
+                            </div>
+                            <div class="field">
                                 <!-- Form Gambar -->
                                 <label for="gambar">Picture</label>
                                 <input type="file" name="gambar" class="gambar" onchange="previewImage()">
                                 <img src="../assets/img/nophoto.png" style="display:block; align-items: center;" class="img-preview w-50">
                             </div>
+
+
+
+
                             <button type="submit" name="submit" class="button success outline w-100">
                                 Add Product
                             </button>
@@ -101,8 +110,8 @@ if (isset($_POST["submit"])) {
     <script src="https://kit.fontawesome.com/6dd84d01cb.js" crossorigin="anonymous"></script>
     <!-- Metro - 4 -->
     <script src="https://cdn.metroui.org.ua/v4.3.2/js/metro.min.js"></script>
-
     <script src="../js/script.js"></script>
+
 
 </body>
 

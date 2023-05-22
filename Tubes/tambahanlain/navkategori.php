@@ -8,7 +8,7 @@
         </button>
         <div class="collapse navbar-collapse " id="navbarNavAltMarkup">
             <div class="navbar-nav ms-auto py-3 test">
-                <a style="color: gold;" class="nav-link hoverdisini px-3" aria-current="page" href="index.php">Home</a>
+                <a style="color: gold;" class="nav-link hoverdisini px-3" aria-current="page" href="../index.php">Home</a>
                 <a style="color: gold;" class="nav-link hoverdisini px-3" href="#">Product</a>
                 <a style="color: gold;" class="nav-link hoverdisini px-3" href="#">Pricing</a>
                 <li class="nav-item dropdown">
@@ -21,16 +21,16 @@
 
                         // Menampilkan kategori dalam loop
                         while ($row = mysqli_fetch_assoc($result)) {
-                            echo '<li><a class="dropdown-item" href="../tubes/php/kategori.php?kategori=' . $row['nama'] . '">' . $row['nama'] . '</a></li>';
+                            echo '<li><a class="dropdown-item" href="kategori.php?kategori=' . $row['nama'] . '">' . $row['nama'] . '</a></li>';
                         }
                         ?>
                     </ul>
                 </li>
 
                 <?php if (isset($_SESSION['submit']) && $_SESSION['submit'] === true) {
-                    echo '<a class="btn btn-outline-danger px-3 logingp" role="button" href="../tubes/php/admin.php">admin</a>';
+                    echo '<a class="btn btn-outline-danger px-3 logingp" role="button" href="admin.php">admin</a>';
                 } else {
-                    echo '<a class="btn btn-outline-danger px-3 logingp" role="button" href="../tubes/php/login.php">Login</a>';;
+                    echo '<a class="btn btn-outline-danger px-3 logingp" role="button" href="login.php">Login</a>';;
                 } ?>
 
             </div>

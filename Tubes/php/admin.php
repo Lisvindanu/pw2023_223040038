@@ -84,6 +84,7 @@ $hours = date("H");
                         <th scope="col">Nama</th>
                         <th scope="col">Brand</th>
                         <th scope="col">Harga</th>
+                        <th scope="col">Kategori</th>
                         <th scope="col">Detail</th>
 
                     </tr>
@@ -101,6 +102,7 @@ $hours = date("H");
                             <td><?= $brg["nama"]; ?></td>
                             <td><?= $brg["brand"]; ?></td>
                             <td><?= $brg["harga"]; ?></td>
+                            <td><?= $brg["kategori"]; ?></td>
                             <td><?= $brg["detail"]; ?></td>
                         </tr>
                     <?php

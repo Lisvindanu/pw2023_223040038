@@ -17,74 +17,91 @@ function query($query)
 function tambah($data)
 {
     global $conn;
-    // ambil data dari tiap elemen dalam form
+
+    // Ambil data dari tiap elemen dalam form
     $gambar = htmlspecialchars($data["gambar"]);
     $nama = htmlspecialchars($data["nama"]);
     $brand = htmlspecialchars($data["brand"]);
     $harga = htmlspecialchars($data["harga"]);
     $detail = htmlspecialchars($data["detail"]);
+    $kategori = htmlspecialchars($data["kategori"]);
 
-    // upload gambar
+    // Upload gambar
     $gambar = upload();
     if (!$gambar) {
         return false;
     }
 
-    // query insert data
-    $query = "INSERT INTO items
-                VALUES
-            (null, '$gambar', '$nama', '$brand', '$harga', '$detail')
-            ";
+    // Cek apakah kategori sudah ada di tabel kategori
+    $query = "SELECT id FROM kategori WHERE nama = '$kategori'";
+    $result = mysqli_query($conn, $query);
+
+    // Jika kategori belum ada, tambahkan ke tabel kategori
+    if (mysqli_num_rows($result) == 0) {
+        $query = "INSERT INTO kategori (nama) VALUES ('$kategori')";
+        mysqli_query($conn, $query);
+    }
+
+    // Dapatkan id dari tabel kategori berdasarkan nama kategori
+    $query = "SELECT id FROM kategori WHERE nama = '$kategori'";
+    $result = mysqli_query($conn, $query);
+    $row = mysqli_fetch_assoc($result);
+    $kategori_id = $row['id'];
+
+    // Query insert data
+    $query = "INSERT INTO items (gambar, nama, brand, harga, detail, kategori, kategori_id)
+              VALUES ('$gambar', '$nama', '$brand', '$harga', '$detail', '$kategori', '$kategori_id')";
     mysqli_query($conn, $query);
 
     return mysqli_affected_rows($conn);
 }
 
+
+
+
 function upload()
 {
+    // Cek apakah input file 'gambar' ada
+    if (!isset($_FILES['gambar'])) {
+        var_dump($_FILES['gambar']);
+        return "Gambar tidak ditemukan";
+    }
+
     $namafile = $_FILES['gambar']['name'];
     $ukuranfile = $_FILES['gambar']['size'];
     $error = $_FILES['gambar']['error'];
     $tmpName = $_FILES['gambar']['tmp_name'];
 
-    //cek apakah tidak ada gambar yang di upload
+    // Cek apakah tidak ada gambar yang diupload
     if ($error === 4) {
-        echo "<script>
-        alert('Pilih gambar terlebih dahulu')
-        </script>";
-        return false;
+        return "Pilih gambar terlebih dahulu";
     }
 
-    // cek apakah yang diupload adalah gambar
+    // Cek apakah yang diupload adalah gambar
     $ekstensigambarValid = ['jpg', 'jpeg', 'png'];
     $ekstensigambar = explode('.', $namafile);
     $ekstensigambar = strtolower(end($ekstensigambar));
     if (!in_array($ekstensigambar, $ekstensigambarValid)) {
-        echo "<script>
-        alert('yang anda upload bukan gambar')
-        </script>";
-        return false;
+        return "Yang Anda upload bukan gambar";
     }
 
-    // cek jika ukurannya terlalu besar 
+    // Cek jika ukurannya terlalu besar
     if ($ukuranfile > 1000000) {
-        echo "<script>
-        alert('ukuran gambar terlalu besar')
-        </script>";
-        return false;
+        return "Ukuran gambar terlalu besar";
     }
 
-    // lolos pengecekan, gambar siap di upload
-    // generate nama gambar baru
+    // Lolos pengecekan, gambar siap diupload
+    // Generate nama gambar baru
     $namafilebaru = uniqid();
     $namafilebaru .= '.';
     $namafilebaru .= $ekstensigambar;
-
 
     move_uploaded_file($tmpName, '../assets/img/' . $namafilebaru);
 
     return $namafilebaru;
 }
+
+
 
 function hapus($id)
 {
@@ -141,6 +158,7 @@ function ubah($data)
     $nama = htmlspecialchars($data["nama"]);
     $brand = htmlspecialchars($data["brand"]);
     $harga = htmlspecialchars($data["harga"]);
+    $kategori = htmlspecialchars($data["kategori"]);
     $detail = htmlspecialchars($data["detail"]);
     $gambarlama = htmlspecialchars($data["gambarlama"]);
 
@@ -158,7 +176,11 @@ function ubah($data)
      nama = '$nama', 
      brand = '$brand',
      harga = '$harga', 
-     gambar = '$gambar',
+     gambar = CASE
+                            WHEN '$gambar' = '$gambarlama' THEN gambar
+                            ELSE '$gambar'
+                         END ,
+     kategori = '$kategori',
      detail = '$detail'
      WHERE id = $id
      
@@ -179,9 +201,3 @@ function cari($keyword)
         ";
     return query($query);
 }
-
-date_default_timezone_set('Asia/Jakarta'); // Atur zona waktu sesuai kebutuhan Anda
-$waktu = date('2023-05-17 02:51:00'); // Ambil waktu saat ini
-
-// Mengatur cookie baru dengan nama "waktu_realtime" dan nilai waktu terbaru
-setcookie("waktu_realtime", $waktu, time() + 3600); // Berlaku selama 1 jam

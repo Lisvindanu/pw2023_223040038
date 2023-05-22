@@ -79,6 +79,10 @@ if (isset($_POST["submit"])) {
                                 <input type="text" name="harga" id="harga" required value="<?= $brg["harga"] ?>">
                             </div>
                             <div class="field">
+                                <label for="kategori">Kategori : </label>
+                                <input type="text" name="kategori" id="kategori" value="<?= $brg["kategori"] ?>">
+                            </div>
+                            <div class="field">
                                 <label for="detail">Detail : </label>
                                 <input type="text" name="detail" id="detail" value="<?= $brg["detail"] ?>">
                             </div>
@@ -106,5 +110,6 @@ if (isset($_POST["submit"])) {
 <script src="https://kit.fontawesome.com/6dd84d01cb.js" crossorigin="anonymous"></script>
 <!-- Metro - 4 -->
 <script src="https://cdn.metroui.org.ua/v4.3.2/js/metro.min.js"></script>
+<script src="../js/script.js"></script>
 
 </html>
