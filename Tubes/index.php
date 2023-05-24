@@ -21,10 +21,13 @@ $items = query("SELECT * FROM items");
   <!-- cssku -->
   <link rel="stylesheet" href="./assets/css/navbwah.css" />
   <link rel="stylesheet" href="./assets/css/slider.css" />
+  <link href='https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.css' rel='stylesheet' />
 
   <!-- script font awesome kit-->
   <script src="https://kit.fontawesome.com/e18581a144.js" crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+
+  <script src='https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.js'></script>
+
 
 
 </head>
@@ -132,14 +135,14 @@ $items = query("SELECT * FROM items");
   </section>
   <!-- jumbotron show item end -->
   <!-- card promo item  start-->
+  <!-- card promo item  start-->
   <section id="cardkatalog" style="background-color:gainsboro ; padding-top:20px">
     <div class="container">
       <div class="row">
         <?php foreach ($items as $brg) : ?>
           <div class="col-lg-4 col-md-6 col-sm-12 mb-4 gambarnaik">
-            <a class="text-decoration-none" style="padding:0px !important; width:0px !important;" href="./php/detailitem.php?id=<?= $brg["id"] ?>">
+            <a class="text-decoration-none" href="./php/detailitem.php?id=<?= $brg["id"] ?>">
               <div class="card p-1" style="width: 20rem">
-
                 <img src="./assets/img/<?= $brg['gambar'] ?>" alt="" style="width: 100; height: 200px;" />
                 <div class="card-body">
                   <h4>
@@ -154,27 +157,33 @@ $items = query("SELECT * FROM items");
                   </div>
                 </div>
               </div>
+            </a>
           </div>
         <?php endforeach; ?>
       </div>
     </div>
   </section>
-  <div class="section">
+  <!-- card promo item end -->
+
+
+
+
+
+  <section>
+
     <div class="container">
       <div class="row">
-        <div class="col-6">
+        <div class="col-lg-6 col-sm-12 text-dark">
           <h1>lokasi kami</h1>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque aliquid, expedita iusto accusantium quisquam odit officiis laboriosam maiores qui consequatur laborum, aperiam facilis distinctio similique dolor blanditiis nesciunt reiciendis aspernatur.</p>
+          <p>Untuk lebih lanjut, bisa datang ke lokasi kami.</p>
         </div>
-        <div class="col-6">
-          <div id="map" style="height:200px; weight: 200px;"></div>
+        <div class="col-lg-6 col-sm-12">
+          <div id="map" style="width: 600px; height:200px;
+          "></div>
         </div>
       </div>
     </div>
-
-
-
-  </div>
+  </section>
 
 
 
@@ -206,28 +215,43 @@ $items = query("SELECT * FROM items");
       </div>
     </div>
   </section>
+
   <!-- tawaran end -->
 
   <!-- footer -->
   <?php include('./tambahanlain/futer.php') ?>
   <!-- footer end -->
 </body>
-<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+
 <script>
-  // Inisialisasi peta pada elemen dengan id 'map'
-  var map = L.map('map').setView([-6.8677809, 107.5219311], 13);
+  mapboxgl.accessToken = 'pk.eyJ1IjoibGlzdmluZGFudSIsImEiOiJjbGkyOWhjc3UwMWFyM2NuejB1b3Z3ODd3In0.tihPfdMfJgp21xhCTku37Q';
+  const map = new mapboxgl.Map({
+    container: 'map', // container ID
+    style: 'mapbox://styles/mapbox/streets-v12', // style URL
+    center: [107.591996, -6.867794], // starting position [lng, lat]
+    zoom: 18, // starting zoom
+  });
+  // Tambahkan marker
+  var marker = new mapboxgl.Marker()
+    .setLngLat([107.591996, -6.867794])
+    .setPopup(new mapboxgl.Popup().setHTML("<h5>24e HarakujuHues</h5>"))
+    .addTo(map);
 
-  // Tambahkan layer peta menggunakan provider yang diinginkan, misalnya OpenStreetMap
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
-    maxZoom: 18,
-  }).addTo(map);
+  var zoomControl = new mapboxgl.NavigationControl();
+  map.addControl(zoomControl);
 
-  // Tambahkan marker ke peta
-  var marker = L.marker([-6.8677809, 107.5219311]).addTo(map);
+  // Atur tingkat zoom
+  map.on('load', function() {
+    map.resize(); // Perbarui ukuran peta setelah memuatnya sepenuhnya
+    map.flyTo({
+      center: [107.591996, -6.867794],
+      zoom: 18
+    });
+  });
 </script>
 <!-- script bootstrap -->
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+<script src=" https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous">
+</script>
 
 </html>
