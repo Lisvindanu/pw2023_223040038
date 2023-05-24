@@ -35,7 +35,6 @@ if (isset($_POST["submit"])) {
     if (mysqli_num_rows($result) === 1) {
 
         // cek password
-
         $row = mysqli_fetch_assoc($result);
         if (password_verify($password, $row["password"])) {
 
@@ -48,11 +47,11 @@ if (isset($_POST["submit"])) {
             // cek remember me
             if (isset($_POST['remember'])) {
                 //buat cookie
-
                 setcookie('id', $row['id'], time() + 60);
                 setcookie('key', hash('sha256', $row['username']), time() + 60);
             }
 
+            // redirect ke halaman admin.php
             header("Location: admin.php");
             exit;
         }
