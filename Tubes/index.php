@@ -24,6 +24,9 @@ $items = query("SELECT * FROM items");
 
   <!-- script font awesome kit-->
   <script src="https://kit.fontawesome.com/e18581a144.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+
+
 </head>
 
 <body>
@@ -50,6 +53,7 @@ $items = query("SELECT * FROM items");
             <img src="./assets/img/hero1.jpeg" class="py-5 w-100 responsivewidthfull" />
           </div>
           <div class="px-4 py-1">
+
             <p>
               Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aut
               culpa, quisquam iure voluptatem rem sint, aspernatur quo non
@@ -155,6 +159,24 @@ $items = query("SELECT * FROM items");
       </div>
     </div>
   </section>
+  <div class="section">
+    <div class="container">
+      <div class="row">
+        <div class="col-6">
+          <h1>lokasi kami</h1>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque aliquid, expedita iusto accusantium quisquam odit officiis laboriosam maiores qui consequatur laborum, aperiam facilis distinctio similique dolor blanditiis nesciunt reiciendis aspernatur.</p>
+        </div>
+        <div class="col-6">
+          <div id="map" style="height:200px; weight: 200px;"></div>
+        </div>
+      </div>
+    </div>
+
+
+
+  </div>
+
+
 
 
   <!-- nav hp -->
@@ -190,7 +212,22 @@ $items = query("SELECT * FROM items");
   <?php include('./tambahanlain/futer.php') ?>
   <!-- footer end -->
 </body>
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+<script>
+  // Inisialisasi peta pada elemen dengan id 'map'
+  var map = L.map('map').setView([-6.8677809, 107.5219311], 13);
+
+  // Tambahkan layer peta menggunakan provider yang diinginkan, misalnya OpenStreetMap
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
+    maxZoom: 18,
+  }).addTo(map);
+
+  // Tambahkan marker ke peta
+  var marker = L.marker([-6.8677809, 107.5219311]).addTo(map);
+</script>
 <!-- script bootstrap -->
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
 
 </html>
