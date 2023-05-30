@@ -3,7 +3,16 @@ session_start();
 
 if (!isset($_SESSION["submit"])) {
     header("Location: login.php");
+    exit;
 }
+
+// Cek peran pengguna
+if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
+    // Pengguna bukan admin, tampilkan pesan atau arahkan ke halaman lain yang sesuai
+    echo "Anda tidak memiliki akses ke halaman ini.";
+    exit;
+}
+
 require 'functions.php';
 
 // pagination 

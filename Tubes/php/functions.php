@@ -117,38 +117,36 @@ function registrasi($data)
     global $conn;
 
     $username = strtolower(stripslashes($data["username"]));
-
     $password = mysqli_real_escape_string($conn, $data["password"]);
     $password2 = mysqli_real_escape_string($conn, $data["password2"]);
+    $role = $data["role"]; // Ambil nilai role dari $data
 
-    // cek username sudah ada atau belum
+    // Cek username sudah ada atau belum
     $result = mysqli_query($conn, "SELECT username FROM users WHERE username = '$username'");
-
     if (mysqli_fetch_assoc($result)) {
         echo "<script>
-        alert('username sudah terdaftar!')
+        alert('Username sudah terdaftar!');
         </script>";
         return false;
     }
 
-
-    // cek konfirmasi password
+    // Cek konfirmasi password
     if ($password !== $password2) {
         echo "<script>
-            alert('konfirmasi password tidak sesuai!');
+            alert('Konfirmasi password tidak sesuai!');
         </script>";
         return false;
     }
 
-    // enkripsi password
+    // Enkripsi password
     $password = password_hash($password, PASSWORD_DEFAULT);
 
-
-    // tambahkan userbaru ke database
-    mysqli_query($conn, "INSERT INTO users VALUES (null, '$username', '$password')");
+    // Tambahkan user baru ke database dengan role
+    mysqli_query($conn, "INSERT INTO users (username, password, role) VALUES ('$username', '$password', '$role')");
 
     return mysqli_affected_rows($conn);
 }
+
 
 function ubah($data)
 {
@@ -200,4 +198,102 @@ function cari($keyword)
             detail LIKE  '%$keyword%'
         ";
     return query($query);
+}
+
+
+
+function tambahKeKeranjang($conn, $item_id, $kategori_id, $user_id)
+{
+    $jumlah = 1;
+
+    // Cek apakah produk sudah ada di keranjang
+    $result = mysqli_query($conn, "SELECT * FROM keranjang WHERE user_id = '$user_id' AND item_id = '$item_id'");
+    if (mysqli_num_rows($result) > 0) {
+        // Jika sudah ada, tambahkan jumlah
+        $row = mysqli_fetch_assoc($result);
+        $jumlah += $row["jumlah"];
+        mysqli_query($conn, "UPDATE keranjang SET jumlah = $jumlah WHERE user_id = '$user_id' AND item_id = '$item_id'");
+    } else {
+        // Jika belum ada, tambahkan produk baru ke keranjang
+        if ($kategori_id !== NULL) {
+            $query = "SELECT harga FROM items WHERE id = '$item_id'";
+            $result = mysqli_query($conn, $query);
+            if (mysqli_num_rows($result) > 0) {
+                $row = mysqli_fetch_assoc($result);
+                $harga = $row['harga'];
+                mysqli_query($conn, "INSERT INTO keranjang (user_id, item_id, kategori_id, harga, jumlah) VALUES ('$user_id', '$item_id', '$kategori_id', $harga, $jumlah)");
+            } else {
+                // Jika item tidak ditemukan, berikan nilai default untuk harga
+                $harga = 0;
+                mysqli_query($conn, "INSERT INTO keranjang (user_id, item_id, kategori_id, harga, jumlah) VALUES ('$user_id', '$item_id', '$kategori_id', $harga, $jumlah)");
+            }
+        } else {
+            // Jika tidak ada kategori, berikan nilai default untuk harga
+            $harga = 0;
+            mysqli_query($conn, "INSERT INTO keranjang (user_id, item_id, jumlah) VALUES ('$user_id', '$item_id', $jumlah)");
+        }
+    }
+
+    // Redirect ke halaman keranjang
+    header("Location: keranjang.php");
+    exit;
+}
+
+
+
+function prosesPembayaran($conn, $user_id)
+{
+    // Set zona waktu ke Waktu Indonesia Barat (WIB)
+    date_default_timezone_set('Asia/Jakarta');
+
+    // Ambil data keranjang berdasarkan user_id
+    $query = "SELECT * FROM keranjang WHERE user_id = $user_id";
+    $result = mysqli_query($conn, $query);
+
+    // Periksa apakah ada data keranjang yang ditemukan
+    if (mysqli_num_rows($result) > 0) {
+        // Ambil total harga dari data keranjang
+        $total_harga = 0;
+        while ($row = mysqli_fetch_assoc($result)) {
+            if (array_key_exists('jumlah', $row) && array_key_exists('harga', $row)) {
+                $total_harga += $row['jumlah'] * $row['harga'];
+            }
+        }
+
+        // Insert data pembayaran ke dalam tabel pembayaran
+        $tanggal_pembayaran = date('Y-m-d h:i:s'); // Tanggal dan waktu saat ini
+        $total_pembayaran = $total_harga;
+
+        // Generate nomor resi acak
+        $resi = generateRandomResi(); // Fungsi generateRandomResi() menghasilkan nomor resi acak
+
+        $insertQuery = "INSERT INTO pembayaran (id, user_id, total_harga, tanggal_pembayaran, total_pembayaran) 
+                        VALUES (NULL, $user_id, $total_harga, '$tanggal_pembayaran',  $total_pembayaran)";
+
+        if (mysqli_query($conn, $insertQuery)) {
+            // Jika berhasil, hapus data keranjang yang sudah dibayar
+            $deleteQuery = "DELETE FROM keranjang WHERE user_id = $user_id";
+            mysqli_query($conn, $deleteQuery);
+
+            // Kembalikan nilai resi
+            return $resi;
+        } else {
+            // Handle error saat menjalankan query INSERT
+            echo "Error: " . mysqli_error($conn);
+        }
+    }
+}
+
+function generateRandomResi()
+{
+    // Generate nomor resi acak
+    $characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $length = 10;
+    $randomResi = '';
+
+    for ($i = 0; $i < $length; $i++) {
+        $randomResi .= $characters[rand(0, strlen($characters) - 1)];
+    }
+
+    return $randomResi;
 }

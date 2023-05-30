@@ -34,6 +34,13 @@ if (isset($_POST["register"])) {
                     <h3 class="mb-4 text-center fs-1">Registrasi</h3>
                     <form class="mb-3" action="" method="post">
                         <div class="form-floating mb-3">
+                            <select class="form-select rounded-0" name="role" id="role" required>
+                                <option value="admin">Admin</option>
+                                <option value="user">User</option>
+                            </select>
+                            <label for="role">Peran</label>
+                        </div>
+                        <div class="form-floating mb-3">
                             <Input class="form-control rounded-0 px-5" type="text" name="username" id="username" placeholder="username" autocomplete="off" required autofocus>
                             <label for="username">Username</label>
                         </div>

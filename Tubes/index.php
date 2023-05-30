@@ -228,12 +228,12 @@ $items = query("SELECT * FROM items");
   const map = new mapboxgl.Map({
     container: 'map', // container ID
     style: 'mapbox://styles/mapbox/streets-v12', // style URL
-    center: [107.591996, -6.867794], // starting position [lng, lat]
+    center: [107.592096, -6.867794], // starting position [lng, lat]
     zoom: 18, // starting zoom
   });
   // Tambahkan marker
   var marker = new mapboxgl.Marker()
-    .setLngLat([107.591996, -6.867794])
+    .setLngLat([107.592096, -6.867794])
     .setPopup(new mapboxgl.Popup().setHTML("<h5>24e HarakujuHues</h5>"))
     .addTo(map);
 
@@ -244,7 +244,7 @@ $items = query("SELECT * FROM items");
   map.on('load', function() {
     map.resize(); // Perbarui ukuran peta setelah memuatnya sepenuhnya
     map.flyTo({
-      center: [107.591996, -6.867794],
+      center: [107.592096, -6.867794],
       zoom: 18
     });
   });
