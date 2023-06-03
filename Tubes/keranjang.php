@@ -19,12 +19,10 @@ if (isset($_POST['tambah_keranjang'])) {
 }
 
 // Pengecekan jika tombol "Bayar" diklik
-// Pengecekan jika tombol "Bayar" diklik
 if (isset($_POST['bayar'])) {
     // Panggil fungsi prosesPembayaran dan dapatkan data resi
-    $resi = prosesPembayaran($conn, $_SESSION['user_id'], $_POST['metode_pembayaran'], $_POST['nomor_rekening'], $_POST['nama_pembeli']);
+    $resi = prosesPembayaran($conn, $_SESSION['user_id']);
 }
-
 
 // Ambil data barang-barang yang ada di keranjang pengguna
 $user_id = $_SESSION["user_id"];
@@ -61,7 +59,7 @@ $items = mysqli_query($conn, $query);
                                 <div class="card-body">
                                     <h5 class="card-title"><?php echo $item["nama"]; ?></h5>
                                     <p class="card-text">Harga: <?php echo $item["harga"]; ?></p>
-                                    <p class="card-text">Kategori: <?php echo $item["kategori"]; ?></p>
+                                    <p class="card-text">Kategori: <?php echo $item["kategori"] ? $item["kategori"] : "Tidak ada kategori"; ?></p>
                                     <p class="card-text">Jumlah: <?php echo $item["jumlah"]; ?></p>
                                 </div>
                             </div>
@@ -71,27 +69,8 @@ $items = mysqli_query($conn, $query);
             <?php endforeach; ?>
         </div>
         <form method="post">
-            <div class="mb-3">
-                <label for="metode_pembayaran" class="form-label">Metode Pembayaran</label>
-                <select class="form-select" id="metode_pembayaran" name="metode_pembayaran">
-                    <option value="transfer_bank">Transfer Bank</option>
-                    <option value="kartu_kredit">Kartu Kredit</option>
-                    <option value="e-wallet">E-Wallet</option>
-                </select>
-            </div>
-            <div class="mb-3">
-                <label for="nomor_rekening" class="form-label">Nomor Rekening</label>
-                <input type="text" class="form-control" id="nomor_rekening" name="nomor_rekening">
-            </div>
-            <div class="mb-3">
-                <label for="nama_pembeli" class="form-label">Nama Pembeli</label>
-                <input type="text" class="form-control" id="nama_pembeli" name="nama_pembeli">
-            </div>
             <button type="submit" name="bayar" class="btn btn-primary">Bayar</button>
         </form>
-
-
-
         <?php if (isset($resi)) : ?>
             <h3>Resi Pembayaran:</h3>
             <p><?php echo $resi; ?></p>

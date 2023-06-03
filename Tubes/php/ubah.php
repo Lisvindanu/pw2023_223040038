@@ -6,7 +6,7 @@ if (!isset($_SESSION["submit"])) {
     header("Location: login.php");
 }
 // koneksi ke dbms
-$conn = mysqli_connect("localhost:3306", "root", "", "tubes");
+$conn = mysqli_connect("sql312.epizy.com", "epiz_34334625", "0My86g2wZcRn1vt", "epiz_34334625_tubes");
 require 'functions.php';
 
 // ambil data di url
@@ -66,6 +66,7 @@ if (isset($_POST["submit"])) {
                         </div>
                         <form action="" method="post" enctype="multipart/form-data">
                             <input type="hidden" name="id" value="<?= $brg["id"] ?>">
+                            <input type="hidden" name="gambarLama" value="<?= $brg["gambar"]; ?>">
                             <div class="field">
                                 <label for="nama">Name : </label>
                                 <input type="text" name="nama" id="nama" required value="<?= $brg["nama"] ?>">
@@ -92,7 +93,8 @@ if (isset($_POST["submit"])) {
 
                                 <img src="../assets/img/<?= $brg["gambar"]; ?>" style=" display:block; align-items: center;" class="img-preview w-50">
                             </div>
-                            <button type=" submit" name="submit" class="button success outline w-100">Change Data!</button>
+                            <button type="submit" name="submit" class="button success outline w-100">Change Data!</button>
+
                         </form>
                     </div>
                 </div>

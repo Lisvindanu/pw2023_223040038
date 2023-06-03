@@ -119,7 +119,8 @@ function registrasi($data)
     $username = strtolower(stripslashes($data["username"]));
     $password = mysqli_real_escape_string($conn, $data["password"]);
     $password2 = mysqli_real_escape_string($conn, $data["password2"]);
-    $role = $data["role"]; // Ambil nilai role dari $data
+    $role = isset($data["role"]) ? $data["role"] : ""; // Assign an empty string if the "role" key is not set
+
 
     // Cek username sudah ada atau belum
     $result = mysqli_query($conn, "SELECT username FROM users WHERE username = '$username'");
@@ -142,7 +143,7 @@ function registrasi($data)
     $password = password_hash($password, PASSWORD_DEFAULT);
 
     // Tambahkan user baru ke database dengan role
-    mysqli_query($conn, "INSERT INTO users (username, password, role) VALUES ('$username', '$password', '$role')");
+    mysqli_query($conn, "INSERT INTO users (username, password) VALUES ('$username', '$password')");
 
     return mysqli_affected_rows($conn);
 }
@@ -158,11 +159,12 @@ function ubah($data)
     $harga = htmlspecialchars($data["harga"]);
     $kategori = htmlspecialchars($data["kategori"]);
     $detail = htmlspecialchars($data["detail"]);
-    $gambarlama = htmlspecialchars($data["gambarlama"]);
+    $gambarLama = htmlspecialchars($data["gambarLama"]);
+
 
     // cek apakah user pilih gambar baru atau tidak
     if ($_FILES['gambar']['error'] === 4) {
-        $gambar = $gambarlama;
+        $gambar = $gambarLama;
     } else {
         $gambar = upload();
     }
@@ -174,10 +176,7 @@ function ubah($data)
      nama = '$nama', 
      brand = '$brand',
      harga = '$harga', 
-     gambar = CASE
-                            WHEN '$gambar' = '$gambarlama' THEN gambar
-                            ELSE '$gambar'
-                         END ,
+     gambar = '$gambar' ,
      kategori = '$kategori',
      detail = '$detail'
      WHERE id = $id
@@ -241,7 +240,7 @@ function tambahKeKeranjang($conn, $item_id, $kategori_id, $user_id)
 
 
 
-function prosesPembayaran($conn, $user_id)
+function prosesPembayaran($conn, $user_id, $metode_pembayaran, $nomor_rekening, $nama_pembeli)
 {
     // Set zona waktu ke Waktu Indonesia Barat (WIB)
     date_default_timezone_set('Asia/Jakarta');
@@ -267,8 +266,8 @@ function prosesPembayaran($conn, $user_id)
         // Generate nomor resi acak
         $resi = generateRandomResi(); // Fungsi generateRandomResi() menghasilkan nomor resi acak
 
-        $insertQuery = "INSERT INTO pembayaran (id, user_id, total_harga, tanggal_pembayaran, total_pembayaran) 
-                        VALUES (NULL, $user_id, $total_harga, '$tanggal_pembayaran',  $total_pembayaran)";
+        $insertQuery = "INSERT INTO pembayaran (id, user_id, metode_pembayaran, nomor_rekening, nama_pembeli, total_harga, tanggal_pembayaran, total_pembayaran) 
+                        VALUES (NULL, $user_id, '$metode_pembayaran', '$nomor_rekening', '$nama_pembeli', $total_harga, '$tanggal_pembayaran',  $total_pembayaran)";
 
         if (mysqli_query($conn, $insertQuery)) {
             // Jika berhasil, hapus data keranjang yang sudah dibayar

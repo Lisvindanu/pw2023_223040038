@@ -47,9 +47,78 @@ if (isset($_POST["cari"])) {
     <link rel="stylesheet" href="../assets/css/tabel.css">
     <link rel="stylesheet" href="../assets/css/navbwah.css" />
     <link rel="stylesheet" href="../assets/css/slider.css" />
-    <link rel="stylesheet" href="../assets/css/adminhp.css" />
+    <link rel="stylesheet" type="text/css" href="../assets/css/adminhp.css" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <!-- <style>
+        @media screen and (max-width: 600px) {
+            .mobile {
+                padding-top: 0px !important;
+                margin-top: 0px !important;
+                padding-bottom: 0px !important;
+                color: red !important;
+            }
+        }
+    </style> -->
+    <style>
+        /* CSS for small screens */
+        @media screen and (max-width: 600px) {
+            /* Adjust the mobile styles here */
+
+            /* Center the text in the mobile section */
+            .mobile p {
+                text-align: center;
+            }
+
+            /* Remove padding and margin from mobile class */
+            .mobile {
+                padding-top: 0 !important;
+                margin-top: 0 !important;
+                padding-bottom: 0 !important;
+                color: red !important;
+            }
+
+            /* Adjust the column width in the row */
+            .mobile .col-6 {
+                width: 100%;
+                padding: 10px;
+            }
+
+            /* Adjust the styles of the tambah button */
+            .mobile .tambah {
+                text-align: center;
+            }
+
+            /* Adjust the styles of the cari form */
+            .mobile .cari {
+                text-align: center;
+                margin-top: 10px;
+            }
+
+            /* Adjust the styles of the table */
+            .table-responsive {
+                overflow-x: auto;
+            }
+        }
+
+        /* CSS for large screens */
+        @media screen and (min-width: 601px) {
+            /* Adjust the desktop styles here */
+
+            /* Add margin to the admin container */
+            .admin-container {
+                margin-top: 30px;
+            }
+
+            /* Adjust the padding of the container */
+            .container.py-2 {
+                padding-top: 60px;
+                padding-bottom: 30px;
+            }
+        }
+    </style>
+
 </head>
+
 
 <body>
     <?php include('../tambahanlain/navadmin.php') ?>
@@ -59,14 +128,14 @@ if (isset($_POST["cari"])) {
 
 
         <div class="container py-2 mobile tom " style="padding-top: 60px !important; ">
-            <div class="row justify-content-between">
-                <div class="col-6 col-lg-2 px-4 py-5 ">
+            <div class="row justify-content-between mobile">
+                <div class="col-6 col-lg-2 px-4 py-5 mobile ">
                     <div class="tambah py-2">
                         <a class="btn btn-outline-danger px-3" role="button" href="../php/tambahdata.php">Add Product</a>
                     </div>
 
                 </div>
-                <div class="col-6 col-lg-2  py-5 ">
+                <div class="col-6 col-lg-2  py-5 mobile ">
                     <div class="cari">
                         <form action="" method="get">
                             <input type="text" name="keyword" class="keyword" placeholder="Cari disini.." data-role="input" autofocus>
