@@ -1,4 +1,4 @@
-<section class="navadmin">
+<section class="navadmin no-print">
     <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top atas" style="background-color: #4A22BF !important;">
         <div class="container-fluid">
             <a class="navbar-brand py-1" href="../index.php">

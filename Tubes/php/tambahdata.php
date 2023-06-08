@@ -89,7 +89,8 @@ if (isset($_POST["submit"])) {
                             <div class="field">
                                 <!-- Form Gambar -->
                                 <label for="gambar">Picture</label>
-                                <input type="file" name="gambar" class="gambar" onchange="previewImage()">
+                                <input type="file" name="gambar" class="gambar" onchange="previewImage()" required>
+
                                 <img src="../assets/img/nophoto.png" style="display:block; align-items: center;" class="img-preview w-50">
                             </div>
 

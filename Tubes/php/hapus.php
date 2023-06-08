@@ -8,7 +8,7 @@ if (!isset($_SESSION["submit"])) {
 }
 require 'functions.php';
 
-$id = htmlspecialchars($_GET['id']);
+$id = $_GET['id'];
 
 if (hapus($id) > 0) {
     echo "<script>
