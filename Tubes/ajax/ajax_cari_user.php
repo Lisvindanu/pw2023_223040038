@@ -1,6 +1,11 @@
 <?php
 require '../php/functions.php';
 
+$kategoriValue = '';
+if (isset($_GET['kategori'])) {
+    $kategoriValue = $_GET['kategori'];
+}
+
 if (isset($_GET['keywords'])) {
     $keywords = $_GET['keywords'];
     $query = "SELECT * FROM items WHERE ";
@@ -14,19 +19,34 @@ if (isset($_GET['keywords'])) {
                    harga LIKE '%$keyword%'";
     }
 
-    $items = query($query);
+    if ($kategoriValue !== 'all') {
+        $query .= " AND kategori = '$kategoriValue'";
+    }
+} else {
+    if ($kategoriValue !== 'all') {
+        $query = "SELECT * FROM items WHERE kategori = '$kategoriValue'";
+    } else {
+        $query = "SELECT * FROM items WHERE 1=0"; // Query yang mengembalikan data kosong
+    }
+}
+
+$items = query($query);
+
+
 ?>
-    <section id="cardkatalog" style="background-color:gainsboro; padding-top:20px">
-        <div class="container">
+<section id="cardkatalog" style="background-color:#FCBC94; padding-top:20px">
+    <div class="container">
+        <?php if ($items) : ?>
             <div class="row">
                 <?php foreach ($items as $brg) : ?>
                     <div class="col-lg-4 col-md-6 col-sm-12 mb-4 gambarnaik">
-                        <div class="card p-1" style="width: 20rem">
+                        <div class="card p-1" style="width: 20rem; background:#D5A3B8;">
                             <a class="text-decoration-none" href="detailuser.php?id=<?= $brg["id"] ?>">
-                                <img style="width: 308px; height: 200px;;" src="../assets/img/<?= $brg["gambar"]; ?>" alt="foto">
+                                <img src="../assets/img/<?= $brg["gambar"]; ?>" alt="foto" style="width: 100%; height: 400px;"></td>
                                 <div class="card-body">
                                     <h4>
-                                        <?= $brg['nama'] ?> <br /><br />
+                                        <?= $brg['nama'] ?> <br />
+                                        <br />
                                         <span style="font-size: 13px; color:red;"><?= $brg['detail']; ?></span>
                                     </h4>
                                     <p>Produk Terbaru</p>
@@ -47,10 +67,14 @@ if (isset($_GET['keywords'])) {
                     </div>
                 <?php endforeach; ?>
             </div>
-        </div>
-    </section>
-<?php
-} else {
-    echo "Kata kunci tidak ditemukan.";
-}
-?>
+        <?php else : ?>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="alert alert-danger" role="alert">
+                        Data tidak ditemukan.
+                    </div>
+                </div>
+            </div>
+        <?php endif; ?>
+    </div>
+</section>

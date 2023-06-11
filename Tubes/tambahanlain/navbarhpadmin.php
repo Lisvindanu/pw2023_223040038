@@ -16,18 +16,12 @@
               </a>';
     }
     ?>
-
-    <a href="./php/about.php" class="navlinkhp">
+    <a href="../php/adminuser.php" class="navlinkhp">
         <i class="material-symbols-outlined nav-icon"> account_circle </i>
-        <span class="nav-text">About</span>
+        <span class="nav-text">user</span>
     </a>
-    <a href="./php/admin.php" class="navlinkhp">
+    <a href="../php/admin.php" class="navlinkhp">
         <i class="material-symbols-outlined nav-icon"> account_circle </i>
-        <span class="nav-text">Admin</span>
+        <span class="nav-text">produk</span>
     </a>
-
-
-    ]
-</nav>
-</nav>
 </nav>

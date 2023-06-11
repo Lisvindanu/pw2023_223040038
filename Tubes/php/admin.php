@@ -48,6 +48,7 @@ if (isset($_POST["cari"])) {
     <link rel="stylesheet" href="../assets/css/navbwah.css" />
     <link rel="stylesheet" href="../assets/css/slider.css" />
     <link rel="stylesheet" type="text/css" href="../assets/css/adminhp.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
 
 
@@ -252,8 +253,10 @@ if (isset($_POST["cari"])) {
                 <tr>
                     <th scope="row"><?= $i ?></th>
                     <td>
-                        <a href="ubah.php?id=<?= $brg["id"]; ?>">ubah</a> |
-                        <a href="hapus.php?id=<?= $brg["id"]; ?>" onclick="return confirm('yakin?')">hapus</a>
+                        <a class="btn btn-warning" href="ubah.php?id=<?= $brg["id"]; ?>">ubah</a> <span>
+                            |
+                        </span>
+                        <a class="btn btn-danger" href="hapus.php?id=<?= $brg["id"]; ?>" onclick="return confirm('yakin?')">hapus</a>
                     </td>
                     <td><img src="../assets/img/<?= $brg["gambar"]; ?>" alt="foto" style="width: 150px;"></td>
                     <td><?= $brg["nama"]; ?></td>
@@ -276,7 +279,7 @@ if (isset($_POST["cari"])) {
     </section>
 
     <!-- nav hp -->
-    <?php include('../tambahanlain/navbarhp.php') ?>
+    <?php include('../tambahanlain/navbarhpadmin.php') ?>
     <!-- nav hp end -->
 
 

@@ -47,7 +47,7 @@ if (isset($_POST["submit"])) {
     <link rel="icon" href="../assets/img/logo-color.png">
 </head>
 
-<body style="background-color: #f1d302ff;">
+<body style="background-color: #FCBC94;">
     <section class="add-product">
         <div class="container">
             <div class="grid">

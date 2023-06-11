@@ -36,7 +36,12 @@ $users = getUsers();
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Admin User</title>
+    <link rel="stylesheet" href="../assets/css/navbwah.css" />
+    <link rel="stylesheet" href="../assets/css/slider.css" />
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/6dd84d01cb.js" crossorigin="anonymous"></script>
     <style>
         /* Styling for mobile devices */
         @media only screen and (max-width: 767px) {
@@ -169,5 +174,10 @@ $users = getUsers();
         </div>
         </div>
     </section>
+    <!-- nav hp -->
+    <?php include('../tambahanlain/navbarhpadmin.php') ?>
+    <!-- nav hp end -->
+
 </body>
+<script src="https://kit.fontawesome.com/6dd84d01cb.js" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQ

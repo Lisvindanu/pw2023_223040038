@@ -18,18 +18,6 @@ $(document).ready(function () {
           console.log(error);
         },
       });
-    } else {
-      // Jika tidak ada keyword, tampilkan tampilan awal card
-      $.ajax({
-        url: "../ajax/ajax_awal_user.php", // Ganti dengan URL untuk tampilan awal card
-        type: "GET",
-        success: function (response) {
-          cardkatalog.html(response);
-        },
-        error: function (error) {
-          console.log(error);
-        },
-      });
     }
   });
 });

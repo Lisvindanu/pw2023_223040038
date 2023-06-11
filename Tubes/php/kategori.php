@@ -5,7 +5,13 @@ require 'functions.php';
 $kategoriValue = $_GET['kategori'];
 
 // Query untuk mendapatkan data berdasarkan kategori
-$query = "SELECT * FROM items WHERE kategori = '$kategoriValue'";
+if ($kategoriValue == 'all') {
+    $query = "SELECT * FROM items";
+} else {
+
+    $query = "SELECT * FROM items WHERE kategori = '$kategoriValue'";
+}
+
 $kategori = mysqli_query($conn, $query);
 ?>
 
@@ -29,7 +35,7 @@ $kategori = mysqli_query($conn, $query);
     <script src="https://kit.fontawesome.com/e18581a144.js" crossorigin="anonymous"></script>
 </head>
 
-<body>
+<body style="background-color:#FCBC94;">
     <?php include('../tambahanlain/navkategori.php') ?>
     <!-- Navbar -->
 
@@ -37,41 +43,46 @@ $kategori = mysqli_query($conn, $query);
         <?php include('../assets/css/slider.css') ?>
     </style>
     <!-- Navbar end -->
-    <h1>Kategori <?php echo $kategoriValue; ?></h1>
-    <section id="cardkatalog" style="background-color:gainsboro ; padding-top:100px">
+    <div style=" padding-top: 120px; background:#FCBC94;" class="container-fluid ">
+        <?php if ($kategoriValue == 'all') : ?>
+            <h1 style="background: #FCBC94;">Kategori All</h1>
+
+        <?php else : ?>
+            <h1 style="background: #FCBC94; ">Kategori <?php echo $kategoriValue; ?></h1>
+        <?php endif; ?>
+    </div>
+
+    <section id="cardkatalog" style="background-color:#FCBC94; padding-top:20px">
         <div class="container">
             <div class="row">
-                <?php foreach ($kategori as $kategori) : ?>
-                    <div class="col-lg-4 col-md-6 col-sm-12 mb-5 gambarnaik">
-                        <a class="text-decoration-none" style="padding:0px !important; width:0px !important;" href="detailitem.php?id=<?= $kategori["id"] ?>">
-                            <div class="card p-1" style="width: 20rem">
-
-                                <img src="../assets/img/<?= $kategori['gambar'] ?>" alt="" style="width: 100; height: 200px;" />
+                <?php foreach ($kategori as $brg) : ?>
+                    <div class="col-lg-4 col-md-6 col-sm-12 mb-4 gambarnaik">
+                        <a class="text-decoration-none" href="./detailitem.php?id=<?= $brg["id"] ?>">
+                            <div class="card p-1" style="width: 20rem; background:#D5A3B8;">
+                                <img src="../assets/img/<?= $brg['gambar'] ?>" alt="" style="width: 100%; height: 400px;" />
                                 <div class="card-body">
-                                    <h4>
-                                        <?= $kategori['nama'] ?> <br />
+                                    <h4 style="color: white;">
+                                        <?= $brg['nama'] ?> <br />
                                         <br />
-                                        <span style="font-size: 13px; color:red;"><?= $kategori['detail']; ?></span>
+                                        <span style="font-size: 13px; color:white;"><?= $brg['detail']; ?></span>
                                     </h4>
-                                    <p>Produk Terbaru</p>
+                                    <p style="color:#F96204 !important;">Produk Terbaru</p>
                                     <div class="card-fasilitas">
-                                        <h4>Rp.<?= $kategori['harga'] ?></h4>
-                                        <p>&nbsp; Diskon</p>
+                                        <h4 style="color: white;">Rp.<?= $brg['harga'] ?></h4>
+                                        <p style="color:#F96204 !important;">&nbsp; Diskon</p>
                                     </div>
                                 </div>
                             </div>
+                        </a>
                     </div>
                 <?php endforeach; ?>
-                <?php if (empty($kategori)) : ?>
-                    <p>Tidak ada data yang ditemukan.</p>
-                <?php endif; ?>
             </div>
         </div>
     </section>
 
 
     <!-- Footer -->
-    <?php include('../tambahanlain/endfooteronly.php') ?>
+    <?php include('../tambahanlain/futer.php') ?>
     <?php include('../tambahanlain/navbarhp.php') ?>
 </body>
 

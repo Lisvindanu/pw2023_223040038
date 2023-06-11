@@ -27,8 +27,8 @@ $brg = query("SELECT * FROM items WHERE id = $id")[0];
 
 </head>
 
-<body>
-    <?php include('../tambahanlain/navdetail.php') ?>
+<body style="background-color:#FCBC94 ;">
+    <?php include('../tambahanlain/navatasuser.php') ?>
     <!-- Navbar -->
 
     <style>
@@ -37,31 +37,42 @@ $brg = query("SELECT * FROM items WHERE id = $id")[0];
     <!-- Navbar end -->
     <section class="detail-product " style="margin-top: 45px !important;">
         <div class="container ">
-            <div class="detail mt-2">
-                <h1 class="nama-sepatu "><?= $brg['brand'] ?> <?= $brg['nama'] ?></h1>
+            <div class="row">
+                <div class="col-6">
 
-                <img src="../assets/img/<?= $brg["gambar"]; ?>" alt="" style="max-width: 600px; margin: auto;">
+                    <div class="detail mt-2">
+                        <h3 class="nama-sep atu "><?= $brg['brand'] ?> <?= $brg['nama'] ?></h3>
 
-                <hr>
-                <div class="row justify-content-center">
-                    <div class="col-sm-2 text-left">
-                        <h6>Brand </h6>
-
-                        <h6> Price </h6>
+                        <img width="50%" src="../assets/img/<?= $brg["gambar"]; ?>" alt="" style="margin: auto;">
+                        <!--  -->
                     </div>
-                    <div class="col-sm-2 text-left">
-                        <h6><?= $brg['brand'] ?></h6>
 
-                        <h6>$<?= $brg['harga'] ?></h6>
-                    </div>
-                    <div class="col-sm-5 offset-md-3  text-left auth">
-                        <h5>Authentic. Guaranteed.</h5>
-                        <h6>100% Verified Authentic</h6>
-                        <p>Every item sold goes through our proprietary multi-step verification process with our team of expert authenticators.</p>
-                    </div>
                 </div>
-                <a href="user.php" class="text-right"><button class="button success"> Back</button> </a>
+                <div class="col-6">
+
+                    <div class="detail mt-5">
+                        <h6>Brand : <?= $brg['brand'] ?></h6>
+
+                        <h6>Price : Rp.<?= $brg['harga'] ?></h6>
+
+                        <form method="POST" action="keranjang.php">
+                            <input type="hidden" name="item_id" value="<?= $brg['id'] ?>">
+                            <?php if (isset($brg['kategori_id'])) : ?>
+                                <input type="hidden" name="kategori_id" value="<?= $brg['kategori_id'] ?>">
+                            <?php endif; ?>
+                            <button type="submit" name="tambah_keranjang" class="btn btn-primary mt-2">Tambahkan ke Keranjang</button>
+                        </form>
+                        <div class="mt-5">
+
+                            <a href="user.php" class="text-right"><button class="btn btn-success"> Tambahkan item lagi?</button> </a>
+                        </div>
+                    </div>
+
+                </div>
             </div>
+
+
+        </div>
         </div>
     </section>
 

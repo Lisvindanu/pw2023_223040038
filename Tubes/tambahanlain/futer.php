@@ -1,5 +1,5 @@
 <!-- section about2 -->
-<section>
+<!-- <section>
     <div class="container">
         <div class="row">
             <div class="col-6 col-lg-2 mb-2 py-4">
@@ -71,10 +71,10 @@
             </div>
         </div>
     </div>
-</section>
+</section> -->
 <!-- section about2 end -->
 <!-- end Footer1 -->
-<section class="  pt-3 mt-2 naikbg" style="background: #4A22BF !important; color:gold !important;">
+<section class="  pt-3 naikbg" style="background: #9C84C2 !important; color:#FCA712 !important;">
     <div class="container">
         <div class="row">
             <div class="col-12 col-lg-12 col-md-6 d-flex">

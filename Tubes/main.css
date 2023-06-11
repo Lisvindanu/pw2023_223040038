@@ -4,15 +4,6 @@ body {
 }
 
 /* header hero */
-section#headerhero {
-  background-image: url(../Tubes/assets/img/heroo.jpg);
-  width: 100%;
-  height: 100vh;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: top;
-  display: block;
-}
 
 .geser2 {
   overflow: hidden;
@@ -25,9 +16,9 @@ section#sale {
 
 /* header hero responsive hp */
 
-.header-text {
+/* .header-text {
   margin-top: 400px !important;
-}
+} */
 
 @media (max-width: 600px) {
   html,
@@ -81,7 +72,7 @@ section#sale {
 }
 
 i {
-  color: white !important;
+  color: rgb(255, 0, 0) !important;
 }
 /* header hero end */
 

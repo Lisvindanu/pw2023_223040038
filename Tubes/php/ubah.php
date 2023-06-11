@@ -52,7 +52,7 @@ if (isset($_POST["submit"])) {
     <title>ubah data </title>
 </head>
 
-<body style="background-color:  #f1d302ff;;">
+<body style="background-color:  #FCBC94;">
     <section class="add-product">
         <div class="container">
             <div class="grid">
@@ -91,7 +91,7 @@ if (isset($_POST["submit"])) {
                                 <label for="gambar">Picture : </label> <br>
                                 <input type="file" name="gambar" id="gambar" onchange="previewImage()">
 
-                                <img src="../tubes/assets/img/<?= $brg["gambar"]; ?>" style=" display:block; align-items: center;" class="img-preview w-50">
+                                <img src="../assets/img/<?= $brg["gambar"]; ?>" style=" display:block; align-items: center;" class="img-preview w-50">
                             </div>
                             <button type="submit" name="submit" class="button success outline w-100">Change Data!</button>
 

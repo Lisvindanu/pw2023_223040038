@@ -29,11 +29,109 @@ $items = query("SELECT * FROM items");
   <script src='https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.js'></script>
 
 
+  <style>
+    .grid-wrapper {
+      margin-top: 200px;
+    }
+
+    .image-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-gap: 10px;
+    }
+
+    .image-item img {
+      width: 100%;
+      height: auto;
+    }
+
+    @media only screen and (max-width: 767px) {
+      .image-grid {
+        grid-template-columns: repeat(2, 4fr);
+      }
+    }
+
+    .popup-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .popup-container.show {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .popup-image {
+      max-width: 80%;
+      max-height: 80%;
+    }
+
+    .popup-close-button {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      padding: 5px;
+      background-color: transparent;
+      border: none;
+      font-size: 24px;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    .dropdown-menu {
+      width: 200px;
+      max-height: 200px;
+      overflow-y: auto;
+    }
+
+
+    .dropdown-menu li {
+      position: relative;
+    }
+
+    .dropdown-menu li:hover>.dropdown-menu {
+      display: block;
+    }
+
+    .dropdown-menu li:hover>.dropdown-menu {
+      top: auto;
+      bottom: 0;
+      left: 100%;
+    }
+
+
+
+
+    @media (min-width: 992px) {
+      a nav-link .hoverdisini {
+        display: none !important;
+      }
+    }
+
+    @media (max-width: 991px) {
+      .nav-item.dropdown:hover .dropdown-menu-kategori {
+        display: block !important;
+      }
+    }
+  </style>
 
 </head>
 
 <body>
   <!-- navbar -->
+
+
   <?php include('./tambahanlain/navatas.php') ?>
   <style>
     <?php include('./assets/css/slider.css') ?>
@@ -43,7 +141,7 @@ $items = query("SELECT * FROM items");
 
 
   <!-- jumbotron show item -->
-  <section class="show1 " style="margin-top: 30px !important;">
+  <!-- <section class="show1 " style="margin-top: 30px !important;background: #FCBC94;">
     <div class="container mt-3 py-2">
       <div class="row">
         <div class="col-lg-6 px-4 py-5 d-flex mobile">
@@ -73,34 +171,61 @@ $items = query("SELECT * FROM items");
         </div>
       </div>
     </div>
+  </section> -->
+  <section class="show1" style="margin-top: 70px !important; background: #FCBC94;">
+    <div class="container mt-5 py-3">
+      <div class="image-grid">
+        <div class="image-item">
+          <a href="php/kategori.php?kategori=pria"><img src="./assets/img/MENSWEAR_auto_x2.png" alt="" /></a>
+        </div>
+        <div class="image-item">
+          <a href="php/kategori.php?kategori=wanita"><img src="./assets/img/WOMENSWEAR_auto_x2.png" alt="" /></a>
+        </div>
+      </div>
+      <div class="row mt-1">
+        <div class="col-6 col-md-3 mt-3 ">
+          <div class="image-item">
+            <a href="php/kategori.php?kategori=all"><img src="./assets/img/ALL.jpg" alt="" /></a>
+          </div>
+        </div>
+        <div class="col-6 col-md-3 mt-3">
+          <div class="image-item">
+            <a href="php/kategori.php?kategori=baju"><img src="./assets/img/TOPWEARS.png" alt="" /></a>
+          </div>
+        </div>
+        <div class="col-6 col-md-3 mt-3 ">
+          <div class="image-item">
+            <a href="php/kategori.php?kategori=celana"><img src="./assets/img/BOTTOMS1.png" alt="" /></a>
+          </div>
+        </div>
+        <div class="col-6 col-md-3 mt-3">
+          <div class="image-item">
+            <a href="php/kategori.php?kategori=aksesoris"><img src="./assets/img/accessories.png" alt="" /></a>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
   <!-- jumbotron end -->
-  <section class="aboutPromo">
+  <section class="aboutPromo" style="background-color: #FCBC94;">
     <div class="container-fluid
     ">
       <div class="row">
         <div class="col-lg-12 py-3 my-3">
-          <h3 class="text-center">About</h3>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique
-            voluptas dicta at corporis, dolores repellat accusantium rerum
-            fugiat eaque vero adipisci, repellendus iure molestiae
-            necessitatibus numquam a, praesentium fugit! Sed?
-          </p>
           <!-- carousel slide tampil -->
           <div id="carouselExampleIndicators" class="carousel slide">
             <div class="carousel-inner mx-auto">
               <div class="carousel-item active">
-                <img src="./assets/img/hero1.jpeg" alt="" class="d-block w-100 mx-auto" />
+                <img src="./assets/img/jpun.png" alt="" class="d-block w-100 mx-auto" />
               </div>
               <div class="carousel-item">
-                <img src="./assets/img/hero1.jpeg" alt="" class="d-block w-100 mx-auto" />
+                <img src="./assets/img/harajukubanner.png" alt="" class="d-block w-100 mx-auto" />
               </div>
               <div class="carousel-item">
-                <img src="./assets/img/hero1.jpeg" alt="" class="d-block w-100 mx-auto" />
+                <img src="./assets/img/harajukuben.png" alt="" class="d-block w-100 mx-auto" />
               </div>
               <div class="carousel-item">
-                <img src="./assets/img/hero1.jpeg" alt="" class="d-block w-100 mx-auto" />
+                <img src="./assets/img/bagus.png" alt="" class="d-block w-100 mx-auto" />
               </div>
             </div>
 
@@ -108,16 +233,16 @@ $items = query("SELECT * FROM items");
 
             <div class="carousel-indicators py-5 turun">
               <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active thumbnail" aria-current="true" aria-label="Slide 1">
-                <img src="./assets/img/hero1.jpeg" class="d-block w-100" alt="..." />
+                <img src="./assets/img/jpun.png" class="d-block w-100" alt="..." />
               </button>
               <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" class="thumbnail" aria-label="Slide 2">
-                <img src="./assets/img/hero1.jpeg" class="d-block w-100" alt="..." />
+                <img src="./assets/img/harajukubanner.png" class="d-block w-100" alt="..." />
               </button>
               <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" class="thumbnail" aria-label="Slide 3">
-                <img src="./assets/img/hero1.jpeg" class="d-block w-100" alt="..." />
+                <img src="./assets/img/harajukuben.png" class="d-block w-100" alt="..." />
               </button>
               <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" class="thumbnail" aria-label="Slide 4">
-                <img src="./assets/img/hero1.jpeg" class="d-block w-100" alt="..." />
+                <img src="./assets/img/bagus.png" class="d-block w-100" alt="..." />
               </button>
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
@@ -135,25 +260,28 @@ $items = query("SELECT * FROM items");
   </section>
   <!-- jumbotron show item end -->
   <!-- card promo item  start-->
-  <!-- card promo item  start-->
-  <section id="cardkatalog" style="background-color:gainsboro ; padding-top:20px">
+
+
+
+
+  <!-- <section id="cardkatalog" style="background-color:#FCBC94; padding-top:20px">
     <div class="container">
       <div class="row">
         <?php foreach ($items as $brg) : ?>
           <div class="col-lg-4 col-md-6 col-sm-12 mb-4 gambarnaik">
             <a class="text-decoration-none" href="./php/detailitem.php?id=<?= $brg["id"] ?>">
-              <div class="card p-1" style="width: 20rem">
-                <img src="./assets/img/<?= $brg['gambar'] ?>" alt="" style="width: 100; height: 200px;" />
+              <div class="card p-1" style="width: 20rem; background:#D5A3B8;">
+                <img src="./assets/img/<?= $brg['gambar'] ?>" alt="" style="width: 100%; height: 400px;" />
                 <div class="card-body">
-                  <h4>
+                  <h4 style="color: white;">
                     <?= $brg['nama'] ?> <br />
                     <br />
-                    <span style="font-size: 13px; color:red;"><?= $brg['detail']; ?></span>
+                    <span style="font-size: 13px; color:white;"><?= $brg['detail']; ?></span>
                   </h4>
-                  <p>Produk Terbaru</p>
+                  <p style="color:#F96204 !important;">Produk Terbaru</p>
                   <div class="card-fasilitas">
-                    <h4>Rp.<?= $brg['harga'] ?></h4>
-                    <p>&nbsp; Diskon</p>
+                    <h4 style="color: white;">Rp.<?= $brg['harga'] ?></h4>
+                    <p style="color:#F96204 !important;">&nbsp; Diskon</p>
                   </div>
                 </div>
               </div>
@@ -162,29 +290,37 @@ $items = query("SELECT * FROM items");
         <?php endforeach; ?>
       </div>
     </div>
-  </section>
+  </section> -->
+
+
+
+  <div class="popup-container" id="popupContainer">
+    <button class="popup-close-button" id="popupCloseButton">&times;</button>
+    <img class="popup-image" src="./assets/img/ALL.jpg" alt="Popup Image">
+  </div>
   <!-- card promo item end -->
 
 
 
 
 
-  <section>
+  <section style="background: #FCBC94;">
 
     <div class="container">
-      <div class="row">
-        <div class="col-lg-6 col-sm-12 text-dark">
+      <div class="row d-flex">
+        <div class="col-lg-6 col-sm-6 pt-1">
+
+          <h3>Our Contact</h3>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius, iure tenetur deleniti nulla quisquam sapiente. Quidem rerum dolorum deleniti, voluptatem, pariatur placeat nisi, sint sequi ducimus quae non sit molestiae!</p>
+        </div>
+        <div class="col-lg-6 col-sm-6 text-dark mb-3 ">
           <h1>lokasi kami</h1>
           <p>Untuk lebih lanjut, bisa datang ke lokasi kami.</p>
-        </div>
-        <div class="col-lg-6 col-sm-12">
-          <div id="map" style="width: 600px; height:200px;
-          "></div>
+          <div class="d-flex " id="map" style="width: 600px; height:200px;"></div>
         </div>
       </div>
     </div>
   </section>
-
 
 
 
@@ -192,31 +328,7 @@ $items = query("SELECT * FROM items");
   <?php include('./tambahanlain/navbarhp.php') ?>
   <!-- nav hp end -->
 
-  <!-- tawaran start -->
-  <section class="bg-dark text-white">
-    <div class="container">
-      <div class="row">
-        <div class="col-12 py-3 d-flex regis">
-          <h1>
-            REGISTER YOUR EMAIL FOR
-            <br />
-            NEWS AND SOCIAL OFFERS
-          </h1>
-          <form class="ms-auto me-3 d-flex">
-            <div class="mb-3">
-              <label for="exampleInputEmail1" class="form-label">Email address</label>
-              <input class="text-white-50 putinput" type="email" class="form-control" id="exampleInputEmail1" placeholder="Your Email" aria-describedby="emailHelp" />
-            </div>
-            <button type="submit" class="btn btn-dark w-100 h-50 mt-3 p-0 tombol12">
-              <i class="fa-solid fa-arrow-right panahkanan"></i>
-            </button>
-          </form>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- tawaran end -->
 
   <!-- footer -->
   <?php include('./tambahanlain/futer.php') ?>
@@ -249,6 +361,44 @@ $items = query("SELECT * FROM items");
     });
   });
 </script>
+<script>
+  window.addEventListener('DOMContentLoaded', function() {
+    var cardkatalogSection = document.getElementById('cardkatalog');
+    var popupContainer = document.getElementById('popupContainer');
+    var popupCloseButton = document.getElementById('popupCloseButton');
+
+    var showPopup = function() {
+      popupContainer.classList.add('show');
+    };
+
+    // Periksa apakah popup telah ditampilkan sebelumnya
+    if (!localStorage.getItem('popupShown')) {
+      var cardkatalogSectionOffset = cardkatalogSection.offsetTop;
+      var windowHeight = window.innerHeight;
+
+      var handleScroll = function() {
+        var scrollPosition = window.pageYOffset;
+
+        if (scrollPosition + windowHeight >= cardkatalogSectionOffset) {
+          showPopup();
+          window.removeEventListener('scroll', handleScroll);
+          localStorage.setItem('popupShown', true); // Simpan informasi bahwa popup telah ditampilkan
+        }
+      };
+
+      window.addEventListener('scroll', handleScroll);
+
+      popupCloseButton.addEventListener('click', function() {
+        popupContainer.classList.remove('show');
+        localStorage.setItem('popupShown', true); // Simpan informasi bahwa popup telah ditampilkan
+      });
+    }
+  });
+</script>
+
+
+
+
 <!-- script bootstrap -->
 
 <script src=" https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous">

@@ -33,7 +33,7 @@
 }
 
 .card-fasilitas {
-  margin-top: 100px;
+  margin-top: 100px !important;
 }
 
 .carousel-indicators button.thumbnail:hover {
@@ -88,7 +88,7 @@
     margin: auto;
   }
 
-  nav.atas {
+  nav .dropdown-menu-kategori {
     display: none !important;
   }
 }
@@ -123,15 +123,11 @@
   color: #807e7e !important;
 }
 
-@media all and (min-width: 992px) {
-  .navbar .nav-item .dropdown-menu {
-    display: none;
-  }
-  
-  .navbar .nav-item:hover .dropdown-menu {
-    display: block;
-  }
-  .navbar .nav-item .dropdown-menu {
-    margin-top: 0;
+@media (min-width: 992px) {
+}
+
+@media (max-width: 991px) {
+  .nav-item.dropdown:hover .dropdown-menu-kategori {
+    display: block !important;
   }
 }

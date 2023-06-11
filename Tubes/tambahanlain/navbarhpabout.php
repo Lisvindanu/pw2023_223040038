@@ -17,17 +17,12 @@
     }
     ?>
 
-    <a href="./php/about.php" class="navlinkhp">
+    <a href="../php/about.php" class="navlinkhp">
         <i class="material-symbols-outlined nav-icon"> account_circle </i>
         <span class="nav-text">About</span>
     </a>
-    <a href="./php/admin.php" class="navlinkhp">
+    <a href="../php/admin.php" class="navlinkhp">
         <i class="material-symbols-outlined nav-icon"> account_circle </i>
         <span class="nav-text">Admin</span>
     </a>
-
-
-    ]
-</nav>
-</nav>
 </nav>
